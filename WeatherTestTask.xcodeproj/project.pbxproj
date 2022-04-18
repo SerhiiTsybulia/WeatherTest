@@ -13,6 +13,10 @@
 		04BDE56D280D405700E07341 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04BDE56B280D405700E07341 /* Main.storyboard */; };
 		04BDE56F280D405C00E07341 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04BDE56E280D405C00E07341 /* Assets.xcassets */; };
 		04BDE572280D405C00E07341 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04BDE570280D405C00E07341 /* LaunchScreen.storyboard */; };
+		04BDE57D280D47CF00E07341 /* WeatherTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BDE57B280D47CF00E07341 /* WeatherTableViewCell.swift */; };
+		04BDE57E280D47CF00E07341 /* WeatherTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04BDE57C280D47CF00E07341 /* WeatherTableViewCell.xib */; };
+		04BDE583280D483000E07341 /* HourTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BDE581280D483000E07341 /* HourTableViewCell.swift */; };
+		04BDE584280D483000E07341 /* HourTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04BDE582280D483000E07341 /* HourTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +28,10 @@
 		04BDE56E280D405C00E07341 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		04BDE571280D405C00E07341 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		04BDE573280D405C00E07341 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		04BDE57B280D47CF00E07341 /* WeatherTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherTableViewCell.swift; sourceTree = "<group>"; };
+		04BDE57C280D47CF00E07341 /* WeatherTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WeatherTableViewCell.xib; sourceTree = "<group>"; };
+		04BDE581280D483000E07341 /* HourTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourTableViewCell.swift; sourceTree = "<group>"; };
+		04BDE582280D483000E07341 /* HourTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HourTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +64,8 @@
 		04BDE564280D405700E07341 /* WeatherTestTask */ = {
 			isa = PBXGroup;
 			children = (
+				04BDE57A280D475B00E07341 /* HourCollectionCell */,
+				04BDE579280D474A00E07341 /* WeatherCell */,
 				04BDE565280D405700E07341 /* AppDelegate.swift */,
 				04BDE567280D405700E07341 /* SceneDelegate.swift */,
 				04BDE569280D405700E07341 /* ViewController.swift */,
@@ -65,6 +75,24 @@
 				04BDE573280D405C00E07341 /* Info.plist */,
 			);
 			path = WeatherTestTask;
+			sourceTree = "<group>";
+		};
+		04BDE579280D474A00E07341 /* WeatherCell */ = {
+			isa = PBXGroup;
+			children = (
+				04BDE57B280D47CF00E07341 /* WeatherTableViewCell.swift */,
+				04BDE57C280D47CF00E07341 /* WeatherTableViewCell.xib */,
+			);
+			path = WeatherCell;
+			sourceTree = "<group>";
+		};
+		04BDE57A280D475B00E07341 /* HourCollectionCell */ = {
+			isa = PBXGroup;
+			children = (
+				04BDE581280D483000E07341 /* HourTableViewCell.swift */,
+				04BDE582280D483000E07341 /* HourTableViewCell.xib */,
+			);
+			path = HourCollectionCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -125,6 +153,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04BDE584280D483000E07341 /* HourTableViewCell.xib in Resources */,
+				04BDE57E280D47CF00E07341 /* WeatherTableViewCell.xib in Resources */,
 				04BDE572280D405C00E07341 /* LaunchScreen.storyboard in Resources */,
 				04BDE56F280D405C00E07341 /* Assets.xcassets in Resources */,
 				04BDE56D280D405700E07341 /* Main.storyboard in Resources */,
@@ -138,6 +168,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04BDE583280D483000E07341 /* HourTableViewCell.swift in Sources */,
+				04BDE57D280D47CF00E07341 /* WeatherTableViewCell.swift in Sources */,
 				04BDE56A280D405700E07341 /* ViewController.swift in Sources */,
 				04BDE566280D405700E07341 /* AppDelegate.swift in Sources */,
 				04BDE568280D405700E07341 /* SceneDelegate.swift in Sources */,
