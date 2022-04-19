@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0455C16F280DD40C0092029A /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0455C16E280DD40C0092029A /* Header.swift */; };
+		0455C171280DD41B0092029A /* Header.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0455C170280DD41B0092029A /* Header.xib */; };
 		04BDE566280D405700E07341 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BDE565280D405700E07341 /* AppDelegate.swift */; };
 		04BDE568280D405700E07341 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BDE567280D405700E07341 /* SceneDelegate.swift */; };
 		04BDE56A280D405700E07341 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BDE569280D405700E07341 /* ViewController.swift */; };
@@ -20,6 +22,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0455C16E280DD40C0092029A /* Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
+		0455C170280DD41B0092029A /* Header.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Header.xib; sourceTree = "<group>"; };
 		04BDE562280D405700E07341 /* WeatherTestTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherTestTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04BDE565280D405700E07341 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		04BDE567280D405700E07341 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -45,6 +49,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0455C16B280DD3600092029A /* Header */ = {
+			isa = PBXGroup;
+			children = (
+				0455C16E280DD40C0092029A /* Header.swift */,
+				0455C170280DD41B0092029A /* Header.xib */,
+			);
+			path = Header;
+			sourceTree = "<group>";
+		};
 		04BDE559280D405700E07341 = {
 			isa = PBXGroup;
 			children = (
@@ -64,6 +77,7 @@
 		04BDE564280D405700E07341 /* WeatherTestTask */ = {
 			isa = PBXGroup;
 			children = (
+				0455C16B280DD3600092029A /* Header */,
 				04BDE57A280D475B00E07341 /* HourCollectionCell */,
 				04BDE579280D474A00E07341 /* WeatherCell */,
 				04BDE565280D405700E07341 /* AppDelegate.swift */,
@@ -157,6 +171,7 @@
 				04BDE57E280D47CF00E07341 /* WeatherTableViewCell.xib in Resources */,
 				04BDE572280D405C00E07341 /* LaunchScreen.storyboard in Resources */,
 				04BDE56F280D405C00E07341 /* Assets.xcassets in Resources */,
+				0455C171280DD41B0092029A /* Header.xib in Resources */,
 				04BDE56D280D405700E07341 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -172,6 +187,7 @@
 				04BDE57D280D47CF00E07341 /* WeatherTableViewCell.swift in Sources */,
 				04BDE56A280D405700E07341 /* ViewController.swift in Sources */,
 				04BDE566280D405700E07341 /* AppDelegate.swift in Sources */,
+				0455C16F280DD40C0092029A /* Header.swift in Sources */,
 				04BDE568280D405700E07341 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
