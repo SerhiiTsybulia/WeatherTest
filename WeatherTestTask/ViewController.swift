@@ -91,8 +91,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         
         let lon = currentLocation.coordinate.longitude
         let lat = currentLocation.coordinate.latitude
+        let apiKey = //Enter your API key
         
-//        let url = "https://api.openweathermap.org/data/2.5/weather?lat=\(lat)&lon=\(lon)&appid=97860de1eff6c5147d0d3a45ea871487"
+        let url = "http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=\(apiKey)&q=\(lat)%2C%20\(lon)"
         
         print("\(lon) | \(lat)")
     }
@@ -128,21 +129,16 @@ extension ViewController: UITableViewDelegate {
      nil
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(" --- CLICK ---")
-    }
-    
-    
-    func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-        "Фуутер"
-    }
-    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         Header.create()
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        200
+        400
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt: IndexPath) -> CGFloat{
+        70
     }
 }
 
