@@ -180,6 +180,7 @@
             </subviews>
             <viewLayoutGuide key="safeArea" id="3Ca-Zo-jGP"/>
             <color key="backgroundColor" red="0.289963305" green="0.56372767690000003" blue="0.88515943289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="tintColor" name="linkColor" catalog="System" colorSpace="catalog"/>
             <constraints>
                 <constraint firstItem="xro-fb-2OC" firstAttribute="leading" secondItem="3Ca-Zo-jGP" secondAttribute="leading" id="9mn-pV-4qp"/>
                 <constraint firstAttribute="trailing" secondItem="Exr-e9-rVD" secondAttribute="trailing" id="FzA-Oq-8V3"/>
