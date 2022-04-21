@@ -12,7 +12,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     @IBOutlet var table: UITableView!
     
+    let apiKey = "uv8oBUByFjYbAAdn4XDHstOht7Z00jVB"
     //    var models = [Weather]()
+    var locationKey: LocationResponse?
     var dummyModels = [
         "cel 0",
         "cel 1",
@@ -84,20 +86,17 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         if !locations.isEmpty, currentLocation == nil {
             currentLocation = locations.first
             locationManger.stopUpdatingLocation()
-            requestWeatherForLocation()
+            requestLocationKey()
         }
     }
-    // MARK: - Weatehr request
+    // MARK: - LocationKey request
     
-    func requestWeatherForLocation(){
+    func requestLocationKey(){
         guard let currentLocation = currentLocation else {
             return
         }
-        
         let lon = currentLocation.coordinate.longitude
         let lat = currentLocation.coordinate.latitude
-        let apiKey = "uv8oBUByFjYbAAdn4XDHstOht7Z00jVB"
-        
         let url = "https://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=\(apiKey)&q=\(lat)%2C%20\(lon)"
         URLSession.shared.dataTask(with: URL(string: url)!, completionHandler: { data, response, error in
             //Validation
@@ -115,9 +114,32 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             catch {
                 print("error: \(error)")
             }
-            
         }).resume()
     }
+    // MARK: - DailyWeather request
+    
+    func requestDailyWeather(){
+        
+        let url = "https://dataservice.accuweather.com/forecasts/v1/daily/1day/\(locationKey!.key)?apikey=\(apiKey)&details=true&metric=true"
+        URLSession.shared.dataTask(with: URL(string: url)!, completionHandler: { data, response, error in
+            //Validation
+            guard let data = data, error == nil else {
+                print("something went wrong")
+                return
+            }
+            let stringResponse = String(data: data, encoding: .utf8) ?? "Empty"
+            print (stringResponse)
+            
+            do {
+                let json = try JSONDecoder().decode(DailyWeatherDto.self, from: data)
+                print (json)
+            }
+            catch {
+                print("error: \(error)")
+            }
+        }).resume()
+    }
+    
 }
 
 // MARK: - UITableViewDataSource impl
@@ -162,6 +184,7 @@ extension ViewController: UITableViewDelegate {
         70
     }
 }
+// MARK: - Models impl
 
 struct LocationResponse: Codable{
     let version: Int
@@ -213,3 +236,54 @@ struct GeoPosition: Codable {
         case elevation = "Elevation"
     }
 }
+
+struct DailyWeatherDto: Codable {
+    let temperature: [TempType: Temperature]
+    let wind: WindDto
+}
+
+enum TempType: String, Codable {
+    case Minimum
+    case Maximum
+}
+
+struct Temperature: Codable {
+    let value: Double
+    let unit: String
+    let unitType: Int
+    
+    enum CodingKeys: String, CodingKey {
+        case value = "Value"
+        case unit = "Unit"
+        case unitType = "UnitType"
+    }
+}
+
+struct WindDto: Codable{
+    let speed: SpeedDto
+    let direction: DirectionDto
+    
+    enum CodingKeys: String, CodingKey {
+        case speed = "Speed"
+        case direction = "Direction"
+    }
+}
+
+struct SpeedDto: Codable{
+    let value: Double
+    let unit: String
+    
+    enum CodingKeys: String, CodingKey {
+        case value = "Value"
+        case unit = "Unit"
+    }
+}
+
+struct DirectionDto: Codable{
+    let localized: String
+    
+    enum CodingKeys: String, CodingKey {
+        case localized = "Localized"
+    }
+}
+
