@@ -12,6 +12,17 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     @IBOutlet var table: UITableView!
     
+    private lazy var header: Header? = {
+        let header = Header.create()
+        header?.positionClickHandler = { [weak self] in
+            self?.locationButtonClicked()
+        }
+        header?.searchClickHandler = { [weak self] in
+            self?.searchButtonClicked()
+        }
+        return header
+    }()
+    
     let apiKey = "uv8oBUByFjYbAAdn4XDHstOht7Z00jVB"
     //    var models = [Weather]()
     var locationKey: LocationResponse?
@@ -73,8 +84,26 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        navigationController?.navigationBar.isHidden = true
         setupLocation()
     }
+    
+    private func locationButtonClicked() {
+        let newViewController = LocationViewController()
+        newViewController.locationPicked = { [weak self] newLocation in
+            self?.locationPicked(location: newLocation)
+        }
+        navigationController?.pushViewController(newViewController, animated: true)
+    }
+    
+    private func searchButtonClicked() {
+        print("make navigation transition")
+    }
+    
+    private func locationPicked(location: AnyObject) {
+        print("update according to new picked location")
+    }
+    
     // MARK: - Location impl
     
     func setupLocation(){
@@ -173,7 +202,7 @@ extension ViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        Header.create()
+        header
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -184,10 +213,9 @@ extension ViewController: UITableViewDelegate {
         70
     }
 }
-// MARK: - Models impl
+// MARK: - Models (Location)
 
 struct LocationResponse: Codable{
-    let version: Int
     let key: String
     let localizedName: String
     let country: Country
@@ -195,7 +223,6 @@ struct LocationResponse: Codable{
     
     enum CodingKeys: String, CodingKey {
         case key = "Key"
-        case version = "Version"
         case localizedName = "LocalizedName"
         case country = "Country"
         case geoPosition = "GeoPosition"
@@ -208,38 +235,25 @@ struct Country: Codable{
     let englishName: String
 }
 
-enum MesuringType: String, Codable {
-    case Metric
-    case Imperial
-}
-
-struct Mesuring: Codable {
-    let value: Double
-    let unit: String
-    let unitType: Int
-    
-    enum CodingKeys: String, CodingKey {
-        case value = "Value"
-        case unit = "Unit"
-        case unitType = "UnitType"
-    }
-}
-
 struct GeoPosition: Codable {
     let latitude: Double
     let longitude: Double
-    let elevation: [MesuringType: Mesuring]
     
     enum CodingKeys: String, CodingKey {
         case latitude = "Latitude"
         case longitude = "Longitude"
-        case elevation = "Elevation"
     }
 }
+// MARK: - Models (Daily Weather)
 
 struct DailyWeatherDto: Codable {
     let temperature: [TempType: Temperature]
-    let wind: WindDto
+    let day: DayDto
+    
+    enum CodingKeys: String, CodingKey {
+        case temperature = "Temperature"
+        case day = "Day"
+    }
 }
 
 enum TempType: String, Codable {
@@ -256,6 +270,14 @@ struct Temperature: Codable {
         case value = "Value"
         case unit = "Unit"
         case unitType = "UnitType"
+    }
+}
+
+struct DayDto: Codable{
+    let wind: WindDto
+    
+    enum CodingKeys: String, CodingKey {
+        case wind = "Wind"
     }
 }
 
@@ -287,3 +309,4 @@ struct DirectionDto: Codable{
     }
 }
 
+// MARK: - Models (Weather for 5 days)

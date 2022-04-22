@@ -16,13 +16,6 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Exr-e9-rVD" userLabel="Location and date View">
                     <rect key="frame" x="0.0" y="0.0" width="479" height="70"/>
                     <subviews>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_my_location" translatesAutoresizingMaskIntoConstraints="NO" id="XMA-ot-Xef">
-                            <rect key="frame" x="438" y="6" width="30" height="30"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="30" id="1Yp-bn-jDF"/>
-                                <constraint firstAttribute="height" constant="30" id="AXB-eq-x5P"/>
-                            </constraints>
-                        </imageView>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mappin" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="hxR-7Q-Xoz">
                             <rect key="frame" x="13" y="7.5" width="20" height="25"/>
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -48,30 +41,42 @@
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="magnifyingglass" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="wQW-vL-YFn">
-                            <rect key="frame" x="389" y="6.5" width="30" height="28.5"/>
-                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1B2-cv-QSQ" userLabel="Search location button">
+                            <rect key="frame" x="435" y="5" width="30" height="30"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="30" id="DBe-hn-1gv"/>
-                                <constraint firstAttribute="height" constant="30" id="REb-RN-9Bg"/>
+                                <constraint firstAttribute="height" constant="30" id="p3h-ri-JSH"/>
+                                <constraint firstAttribute="width" constant="30" id="zcd-XR-wWw"/>
                             </constraints>
-                        </imageView>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="plain" image="ic_my_location"/>
+                            <connections>
+                                <action selector="locationClicked" destination="iN0-l3-epB" eventType="touchUpInside" id="Z7S-Cw-q9I"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l4e-Cn-k0o" userLabel="Search button">
+                            <rect key="frame" x="385" y="5" width="30" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="4nq-DG-iRd"/>
+                                <constraint firstAttribute="width" constant="30" id="PVt-Uw-Vd2"/>
+                            </constraints>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="plain" image="magnifyingglass"/>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstItem="wQW-vL-YFn" firstAttribute="top" secondItem="Exr-e9-rVD" secondAttribute="top" constant="6" id="79n-7E-Gsz"/>
+                        <constraint firstAttribute="trailing" secondItem="1B2-cv-QSQ" secondAttribute="trailing" constant="14" id="2HU-9H-zhU"/>
                         <constraint firstItem="bg3-he-4DH" firstAttribute="leading" secondItem="Exr-e9-rVD" secondAttribute="leading" constant="37" id="9gq-9C-bwo"/>
+                        <constraint firstItem="1B2-cv-QSQ" firstAttribute="leading" secondItem="l4e-Cn-k0o" secondAttribute="trailing" constant="20" id="D91-Nn-eky"/>
                         <constraint firstItem="Ahb-0N-Wbs" firstAttribute="top" secondItem="Exr-e9-rVD" secondAttribute="top" constant="4" id="LKe-n2-vka"/>
-                        <constraint firstItem="XMA-ot-Xef" firstAttribute="leading" secondItem="wQW-vL-YFn" secondAttribute="trailing" constant="19" id="NVe-Fe-6cU"/>
-                        <constraint firstItem="XMA-ot-Xef" firstAttribute="top" secondItem="Exr-e9-rVD" secondAttribute="top" constant="6" id="OJa-QY-FKU"/>
                         <constraint firstAttribute="height" constant="70" id="Rk5-JE-gB7"/>
-                        <constraint firstAttribute="trailing" secondItem="XMA-ot-Xef" secondAttribute="trailing" constant="11" id="dsq-ob-CYy"/>
-                        <constraint firstAttribute="trailing" secondItem="XMA-ot-Xef" secondAttribute="trailing" constant="11" id="dyW-i7-jIT"/>
                         <constraint firstAttribute="bottom" secondItem="bg3-he-4DH" secondAttribute="bottom" constant="4" id="ePW-3J-K31"/>
+                        <constraint firstItem="1B2-cv-QSQ" firstAttribute="top" secondItem="Exr-e9-rVD" secondAttribute="top" constant="5" id="emj-7B-u49"/>
                         <constraint firstItem="hxR-7Q-Xoz" firstAttribute="leading" secondItem="Exr-e9-rVD" secondAttribute="leading" constant="13" id="fOq-6I-ko1"/>
                         <constraint firstItem="hxR-7Q-Xoz" firstAttribute="top" secondItem="Exr-e9-rVD" secondAttribute="top" constant="8" id="mDy-ne-LT3"/>
                         <constraint firstItem="bg3-he-4DH" firstAttribute="top" secondItem="Ahb-0N-Wbs" secondAttribute="bottom" constant="7.5" id="oiz-aM-cxD"/>
                         <constraint firstItem="Ahb-0N-Wbs" firstAttribute="leading" secondItem="hxR-7Q-Xoz" secondAttribute="trailing" constant="4" id="rnO-p5-G37"/>
+                        <constraint firstItem="l4e-Cn-k0o" firstAttribute="top" secondItem="Exr-e9-rVD" secondAttribute="top" constant="5" id="uix-IO-AsQ"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xro-fb-2OC" userLabel="Forecast View">
@@ -214,9 +219,9 @@
     <resources>
         <image name="cloud.sun.rain" catalog="system" width="128" height="128"/>
         <image name="humidity" catalog="system" width="128" height="98"/>
-        <image name="ic_my_location" width="22" height="22"/>
+        <image name="ic_my_location" width="30" height="30"/>
         <image name="icon_wind_se" width="34" height="34"/>
-        <image name="magnifyingglass" catalog="system" width="128" height="115"/>
+        <image name="magnifyingglass" width="30" height="30"/>
         <image name="mappin" catalog="system" width="105" height="128"/>
         <image name="thermometer" catalog="system" width="81" height="128"/>
         <image name="wind" catalog="system" width="128" height="103"/>

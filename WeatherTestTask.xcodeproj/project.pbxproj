@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		0455C16F280DD40C0092029A /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0455C16E280DD40C0092029A /* Header.swift */; };
 		0455C171280DD41B0092029A /* Header.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0455C170280DD41B0092029A /* Header.xib */; };
+		0455C1752812AEA10092029A /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0455C1732812AEA00092029A /* LocationViewController.swift */; };
+		0455C1762812AEA10092029A /* LocationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0455C1742812AEA10092029A /* LocationViewController.xib */; };
+		0455C1792812B2190092029A /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0455C1782812B2190092029A /* MapKit.framework */; };
 		04BDE566280D405700E07341 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BDE565280D405700E07341 /* AppDelegate.swift */; };
 		04BDE568280D405700E07341 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BDE567280D405700E07341 /* SceneDelegate.swift */; };
 		04BDE56A280D405700E07341 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BDE569280D405700E07341 /* ViewController.swift */; };
@@ -24,6 +27,9 @@
 /* Begin PBXFileReference section */
 		0455C16E280DD40C0092029A /* Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
 		0455C170280DD41B0092029A /* Header.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Header.xib; sourceTree = "<group>"; };
+		0455C1732812AEA00092029A /* LocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
+		0455C1742812AEA10092029A /* LocationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LocationViewController.xib; sourceTree = "<group>"; };
+		0455C1782812B2190092029A /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		04BDE562280D405700E07341 /* WeatherTestTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherTestTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04BDE565280D405700E07341 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		04BDE567280D405700E07341 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -43,6 +49,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0455C1792812B2190092029A /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -58,11 +65,29 @@
 			path = Header;
 			sourceTree = "<group>";
 		};
+		0455C1722812AE7B0092029A /* LocationViewController */ = {
+			isa = PBXGroup;
+			children = (
+				0455C1732812AEA00092029A /* LocationViewController.swift */,
+				0455C1742812AEA10092029A /* LocationViewController.xib */,
+			);
+			path = LocationViewController;
+			sourceTree = "<group>";
+		};
+		0455C1772812B2190092029A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0455C1782812B2190092029A /* MapKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		04BDE559280D405700E07341 = {
 			isa = PBXGroup;
 			children = (
 				04BDE564280D405700E07341 /* WeatherTestTask */,
 				04BDE563280D405700E07341 /* Products */,
+				0455C1772812B2190092029A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -77,6 +102,7 @@
 		04BDE564280D405700E07341 /* WeatherTestTask */ = {
 			isa = PBXGroup;
 			children = (
+				0455C1722812AE7B0092029A /* LocationViewController */,
 				0455C16B280DD3600092029A /* Header */,
 				04BDE57A280D475B00E07341 /* HourCollectionCell */,
 				04BDE579280D474A00E07341 /* WeatherCell */,
@@ -173,6 +199,7 @@
 				04BDE56F280D405C00E07341 /* Assets.xcassets in Resources */,
 				0455C171280DD41B0092029A /* Header.xib in Resources */,
 				04BDE56D280D405700E07341 /* Main.storyboard in Resources */,
+				0455C1762812AEA10092029A /* LocationViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -183,6 +210,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0455C1752812AEA10092029A /* LocationViewController.swift in Sources */,
 				04BDE583280D483000E07341 /* HourTableViewCell.swift in Sources */,
 				04BDE57D280D47CF00E07341 /* WeatherTableViewCell.swift in Sources */,
 				04BDE56A280D405700E07341 /* ViewController.swift in Sources */,
@@ -340,6 +368,7 @@
 				DEVELOPMENT_TEAM = 786PYG48X8;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WeatherTestTask/Info.plist;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Allow location to see local weather";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -368,6 +397,7 @@
 				DEVELOPMENT_TEAM = 786PYG48X8;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WeatherTestTask/Info.plist;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Allow location to see local weather";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

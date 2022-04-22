@@ -8,11 +8,22 @@
 import UIKit
 
 class Header: UIView {
+    
+    var positionClickHandler: (() -> Void)?
+    var searchClickHandler: (() -> Void)?
+
+    @IBAction func locationClicked() {
+        print("BAM")
+        positionClickHandler?()
+    }
+    @IBAction func searchClicked() {
+        print("Search BAM")
+        searchClickHandler?()
+    }
+
     static func create() -> Header? {
         UINib(nibName: "Header", bundle: .main).instantiate(withOwner: nil, options: nil).first as? Header
     }
-    
-    // MARK: - Outlets
-    
+  
     
 }
