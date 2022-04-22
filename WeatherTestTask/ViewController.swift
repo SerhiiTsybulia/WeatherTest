@@ -24,8 +24,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     }()
     
     let apiKey = "uv8oBUByFjYbAAdn4XDHstOht7Z00jVB"
-    //    var models = [Weather]()
-    var locationKey: LocationResponse?
+//    var locationKey: LocationResponse?
+    
     var dummyModels = [
         "cel 0",
         "cel 1",
@@ -100,34 +100,36 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         print("make navigation transition")
     }
     
-    private func locationPicked(location: AnyObject) {
-        print("update according to new picked location")
+    private func locationPicked(location: CLLocationCoordinate2D) {
+        updateWeather(with: location)
+    }
+    
+    private func updateWeather(with location: CLLocationCoordinate2D) {
+        requestLocationKey(location: location)
     }
     
     // MARK: - Location impl
     
-    func setupLocation(){
+    func setupLocation() {
         locationManger.delegate = self
         locationManger.requestWhenInUseAuthorization()
         locationManger.startUpdatingLocation()
     }
-    func locationManager(_ manger: CLLocationManager, didUpdateLocations locations: [CLLocation]){
-        if !locations.isEmpty, currentLocation == nil {
-            currentLocation = locations.first
-            locationManger.stopUpdatingLocation()
-            requestLocationKey()
-        }
-    }
+//    func locationManager(_ manger: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+//        if !locations.isEmpty, currentLocation == nil {
+//            currentLocation = locations.first
+//            locationManger.stopUpdatingLocation()
+//            requestLocationKey()
+//        }
+//    }
+    
     // MARK: - LocationKey request
     
-    func requestLocationKey(){
-        guard let currentLocation = currentLocation else {
-            return
-        }
-        let lon = currentLocation.coordinate.longitude
-        let lat = currentLocation.coordinate.latitude
+    func requestLocationKey(location: CLLocationCoordinate2D) {
+        let lon = location.longitude
+        let lat = location.latitude
         let url = "https://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=\(apiKey)&q=\(lat)%2C%20\(lon)"
-        URLSession.shared.dataTask(with: URL(string: url)!, completionHandler: { data, response, error in
+        URLSession.shared.dataTask(with: URL(string: url)!, completionHandler: { [weak self] data, response, error in
             //Validation
             guard let data = data, error == nil else {
                 print("something went wrong")
@@ -139,18 +141,20 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             do {
                 let json = try JSONDecoder().decode(LocationResponse.self, from: data)
                 print (json)
+                let key = json.key
+                self?.requestDailyWeather(locationKey: key)
             }
             catch {
-                print("error: \(error)")
+                print("\(#function) error: \(error)")
             }
         }).resume()
     }
     // MARK: - DailyWeather request
     
-    func requestDailyWeather(){
+    func requestDailyWeather(locationKey: String) {
         
-        let url = "https://dataservice.accuweather.com/forecasts/v1/daily/1day/\(locationKey!.key)?apikey=\(apiKey)&details=true&metric=true"
-        URLSession.shared.dataTask(with: URL(string: url)!, completionHandler: { data, response, error in
+        let url = "https://dataservice.accuweather.com/forecasts/v1/daily/1day/\(locationKey)?apikey=\(apiKey)&details=true&metric=true"
+        URLSession.shared.dataTask(with: URL(string: url)!, completionHandler: { [weak self] data, response, error in
             //Validation
             guard let data = data, error == nil else {
                 print("something went wrong")
@@ -162,13 +166,18 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             do {
                 let json = try JSONDecoder().decode(DailyWeatherDto.self, from: data)
                 print (json)
+                self?.updateWeather(with: json)
             }
             catch {
-                print("error: \(error)")
+                print("\(#function) error: \(error)")
             }
         }).resume()
     }
     
+    private func updateWeather(with model: DailyWeatherDto) {
+        // TODO: update UI
+        preconditionFailure("!!! UPDATE UI !!!")
+    }
 }
 
 // MARK: - UITableViewDataSource impl

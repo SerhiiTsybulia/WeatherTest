@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LocationViewController" customModule="WeatherTestTask" customModuleProvider="target">
             <connections>
+                <outlet property="mapView" destination="Coj-78-6Bd" id="iqX-f4-CJW"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -21,6 +22,14 @@
                 <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Coj-78-6Bd">
                     <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                 </mapView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aOb-88-hdZ">
+                    <rect key="frame" x="152" y="831" width="110.5" height="31"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" title="Pick Location"/>
+                    <connections>
+                        <action selector="pickLocation" destination="-1" eventType="touchUpInside" id="Dhk-9Y-3uo"/>
+                    </connections>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -28,6 +37,8 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Coj-78-6Bd" secondAttribute="trailing" id="8YP-qm-2m0"/>
                 <constraint firstItem="Coj-78-6Bd" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="NVW-4o-cqo"/>
                 <constraint firstAttribute="bottom" secondItem="Coj-78-6Bd" secondAttribute="bottom" id="PHN-IV-Ub2"/>
+                <constraint firstItem="aOb-88-hdZ" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="SLj-fL-7N6"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="aOb-88-hdZ" secondAttribute="bottom" id="l3C-wb-KM9"/>
                 <constraint firstItem="Coj-78-6Bd" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="o72-IH-VuG"/>
             </constraints>
             <point key="canvasLocation" x="139" y="50"/>
