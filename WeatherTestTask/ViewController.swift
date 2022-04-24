@@ -90,15 +90,16 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     private func locationButtonClicked() {
-        let newViewController = LocationViewController()
-        newViewController.locationPicked = { [weak self] newLocation in
+        let mainViewController = LocationViewController()
+        mainViewController.locationPicked = { [weak self] newLocation in
             self?.locationPicked(location: newLocation)
         }
-        navigationController?.pushViewController(newViewController, animated: true)
+        navigationController?.pushViewController(mainViewController, animated: true)
     }
     
     private func searchButtonClicked() {
-        print("make navigation transition")
+        let mainViewController = SearchConroller()
+        navigationController?.pushViewController(mainViewController, animated: true)
     }
     
     private func locationPicked(location: CLLocationCoordinate2D) {
@@ -209,7 +210,7 @@ extension ViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt: IndexPath) -> CGFloat{
-        70
+        50
     }
 }
 // MARK: - Models (Location)
