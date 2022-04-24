@@ -56,7 +56,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         
         table.backgroundColor = UIColor(red: 74/255.0, green: 144/255.0, blue: 226/255.0, alpha: 1.0)
         view.backgroundColor = UIColor(red: 74/255.0, green: 144/255.0, blue: 226/255.0, alpha: 1.0)
-        
+        table.allowsSelection = true
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -117,6 +117,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             }
         }).resume()
     }
+    
     // MARK: - DailyWeather request
      
     func requestDailyWeather(locationKey: String) {
@@ -158,18 +159,16 @@ extension ViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let curModel = dummyModels[indexPath.row]
-        if indexPath.row % 2 == 0 {
+//        let curModel = dummyModels[indexPath.row]
             let cell = tableView.dequeueReusableCell(withIdentifier: WeatherTableViewCell.identifire, for: indexPath)
-            cell.textLabel?.text = curModel
-            return cell
-        } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: HourTableViewCell.identifire, for: indexPath)
-            cell.textLabel?.text = curModel
+        if cell.isSelected {
+            print("Thsi cell selected")
+        }
+//            cell.textLabel?.text = curModel
             return cell
         }
     }
-}
+
 
 // MARK: - UITableViewDelegate impl
 
@@ -187,8 +186,9 @@ extension ViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt: IndexPath) -> CGFloat{
-        60
+        70
     }
+    
 }
 // MARK: - Models (Location)
 
