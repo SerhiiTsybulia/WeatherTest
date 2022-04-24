@@ -22,8 +22,8 @@
 		04BDE57E280D47CF00E07341 /* WeatherTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04BDE57C280D47CF00E07341 /* WeatherTableViewCell.xib */; };
 		04BDE583280D483000E07341 /* HourTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BDE581280D483000E07341 /* HourTableViewCell.swift */; };
 		04BDE584280D483000E07341 /* HourTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04BDE582280D483000E07341 /* HourTableViewCell.xib */; };
-		EF90C9FE281561B8005096C2 /* SearchConroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF90C9FC281561B8005096C2 /* SearchConroller.swift */; };
-		EF90C9FF281561B8005096C2 /* SearchConroller.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF90C9FD281561B8005096C2 /* SearchConroller.xib */; };
+		EF90C9FE281561B8005096C2 /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF90C9FC281561B8005096C2 /* SearchController.swift */; };
+		EF90C9FF281561B8005096C2 /* SearchController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF90C9FD281561B8005096C2 /* SearchController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,8 +44,8 @@
 		04BDE57C280D47CF00E07341 /* WeatherTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WeatherTableViewCell.xib; sourceTree = "<group>"; };
 		04BDE581280D483000E07341 /* HourTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourTableViewCell.swift; sourceTree = "<group>"; };
 		04BDE582280D483000E07341 /* HourTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HourTableViewCell.xib; sourceTree = "<group>"; };
-		EF90C9FC281561B8005096C2 /* SearchConroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchConroller.swift; sourceTree = "<group>"; };
-		EF90C9FD281561B8005096C2 /* SearchConroller.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchConroller.xib; sourceTree = "<group>"; };
+		EF90C9FC281561B8005096C2 /* SearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
+		EF90C9FD281561B8005096C2 /* SearchController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,8 +89,8 @@
 		0455C17A281413DB0092029A /* SearchViewController */ = {
 			isa = PBXGroup;
 			children = (
-				EF90C9FC281561B8005096C2 /* SearchConroller.swift */,
-				EF90C9FD281561B8005096C2 /* SearchConroller.xib */,
+				EF90C9FC281561B8005096C2 /* SearchController.swift */,
+				EF90C9FD281561B8005096C2 /* SearchController.xib */,
 			);
 			path = SearchViewController;
 			sourceTree = "<group>";
@@ -213,7 +213,7 @@
 				04BDE572280D405C00E07341 /* LaunchScreen.storyboard in Resources */,
 				04BDE56F280D405C00E07341 /* Assets.xcassets in Resources */,
 				0455C171280DD41B0092029A /* Header.xib in Resources */,
-				EF90C9FF281561B8005096C2 /* SearchConroller.xib in Resources */,
+				EF90C9FF281561B8005096C2 /* SearchController.xib in Resources */,
 				04BDE56D280D405700E07341 /* Main.storyboard in Resources */,
 				0455C1762812AEA10092029A /* LocationViewController.xib in Resources */,
 			);
@@ -232,7 +232,7 @@
 				04BDE56A280D405700E07341 /* ViewController.swift in Sources */,
 				04BDE566280D405700E07341 /* AppDelegate.swift in Sources */,
 				0455C16F280DD40C0092029A /* Header.swift in Sources */,
-				EF90C9FE281561B8005096C2 /* SearchConroller.swift in Sources */,
+				EF90C9FE281561B8005096C2 /* SearchController.swift in Sources */,
 				04BDE568280D405700E07341 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

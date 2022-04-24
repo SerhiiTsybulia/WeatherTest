@@ -98,7 +98,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     private func searchButtonClicked() {
-        let mainViewController = SearchConroller()
+        let mainViewController = SearchController()
         navigationController?.pushViewController(mainViewController, animated: true)
     }
     

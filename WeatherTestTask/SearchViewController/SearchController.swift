@@ -8,16 +8,12 @@
 
 import UIKit
 
-class SearchConroller: UITableViewController, UISearchResultsUpdating {
-    func updateSearchResults(for searchController: UISearchController) {
-        <#code#>
-    }
+class SearchController: UITableViewController, UISearchResultsUpdating {
     
-        
     let cities = ["Stambul","Kharkiv","Kyiv","Cherkassy"]
     
     private lazy var searchController: UISearchController = {
-        let controller = UISearchController()
+        let controller = UISearchController(searchResultsController: nil)
         controller.delegate = self
         return controller
     }()
@@ -27,7 +23,16 @@ class SearchConroller: UITableViewController, UISearchResultsUpdating {
     
         navigationController?.navigationBar.isHidden = false
         navigationItem.searchController = searchController
+        searchController.searchResultsUpdater = (searchController as! UISearchResultsUpdating)
     }
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let text = searchController.searchBar.text else {
+            return
+        }
+        print(text)
+    }
+    
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -102,6 +107,6 @@ class SearchConroller: UITableViewController, UISearchResultsUpdating {
     
 }
 
-extension SearchConroller: UISearchControllerDelegate {
+extension SearchController: UISearchControllerDelegate {
     
 }
