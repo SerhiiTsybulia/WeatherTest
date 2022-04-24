@@ -10,7 +10,7 @@ import MapKit
 import CoreLocation
 
 class LocationViewController: UIViewController, CLLocationManagerDelegate {
-
+    
     var locationPicked: ((CLLocationCoordinate2D) -> Void)?
     
     @IBOutlet weak var mapView: MKMapView!
@@ -39,17 +39,17 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate {
     func render(_ location: CLLocation){
         
         let coordinate = CLLocationCoordinate2D(latitude: location.coordinate.latitude,                                              longitude: location.coordinate.longitude)
-        let span = MKCoordinateSpan(latitudeDelta: 0.1,
-                                    longitudeDelta: 0.1)
-        
-        let region = MKCoordinateRegion(center: coordinate,
-                                        span: span)
+        let span = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
+        let region = MKCoordinateRegion(center: coordinate, span: span)
         
         mapView.setRegion(region, animated: true)
+        
+        let pin = MKPointAnnotation()
+        pin.coordinate = coordinate
+        mapView.addAnnotation(pin)
     }
     
-    @IBAction
-    func pickLocation() {
+    @IBAction func pickLocation() {
         let location = mapView.visibleMapRect.origin.coordinate
         locationPicked?(location)
         navigationController?.popViewController(animated: true)

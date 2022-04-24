@@ -66,6 +66,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationController?.navigationBar.isHidden = true
         // MARK: - Regeister cells
         
         table.register(WeatherTableViewCell.nib(), forCellReuseIdentifier: WeatherTableViewCell.identifire)
@@ -83,8 +84,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        
         super.viewDidAppear(animated)
-        navigationController?.navigationBar.isHidden = true
         setupLocation()
     }
     
@@ -115,14 +116,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         locationManger.requestWhenInUseAuthorization()
         locationManger.startUpdatingLocation()
     }
-//    func locationManager(_ manger: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-//        if !locations.isEmpty, currentLocation == nil {
-//            currentLocation = locations.first
-//            locationManger.stopUpdatingLocation()
-//            requestLocationKey()
-//        }
-//    }
-    
+
     // MARK: - LocationKey request
     
     func requestLocationKey(location: CLLocationCoordinate2D) {
@@ -135,12 +129,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                 print("something went wrong")
                 return
             }
-            let stringResponse = String(data: data, encoding: .utf8) ?? "Empty"
-            print (stringResponse)
-            
             do {
                 let json = try JSONDecoder().decode(LocationResponse.self, from: data)
-                print (json)
                 let key = json.key
                 self?.requestDailyWeather(locationKey: key)
             }
@@ -150,7 +140,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         }).resume()
     }
     // MARK: - DailyWeather request
-    
+     
     func requestDailyWeather(locationKey: String) {
         
         let url = "https://dataservice.accuweather.com/forecasts/v1/daily/1day/\(locationKey)?apikey=\(apiKey)&details=true&metric=true"
@@ -242,6 +232,12 @@ struct Country: Codable{
     let id: String
     let localizedName: String
     let englishName: String
+    
+    enum CodingKeys: String, CodingKey {
+        case id = "ID"
+        case localizedName = "LocalizedName"
+        case englishName = "EnglishName"
+    }
 }
 
 struct GeoPosition: Codable {
