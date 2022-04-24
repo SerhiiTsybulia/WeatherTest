@@ -32,31 +32,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         "cel 2",
         "cel 3",
         "cel 4",
-        "cel 5",
-        "cel 6",
-        "cel 7",
-        "cel 8",
-        "cel 9",
-        "cel 10",
-        "cel 11",
-        "cel 12",
-        "cel 13",
-        "cel 14",
-        "cel 15",
-        "cel 16",
-        "cel 17",
-        "cel 18",
-        "cel 19",
-        "cel 20",
-        "cel 21",
-        "cel 22",
-        "cel 23",
-        "cel 24",
-        "cel 25",
-        "cel 26",
-        "cel 27",
-        "cel 28",
-        "cel 29"
+        "cel 5"
     ]
     
     let locationManger = CLLocationManager()
@@ -98,9 +74,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     private func searchButtonClicked() {
-        let mainViewController = SearchController()
+        let mainViewController = SearchViewController()
         navigationController?.pushViewController(mainViewController, animated: true)
     }
+    
     
     private func locationPicked(location: CLLocationCoordinate2D) {
         updateWeather(with: location)
@@ -210,7 +187,7 @@ extension ViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt: IndexPath) -> CGFloat{
-        50
+        60
     }
 }
 // MARK: - Models (Location)
