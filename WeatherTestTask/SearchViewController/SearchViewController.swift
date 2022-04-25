@@ -2,7 +2,7 @@
 //  SearchViewController.swift
 //  WeatherTestTask
 //
-//  Created by Igor Skorina on 24.04.2022.
+//  Created by Сергей on 24.04.2022.
 //  Copyright © 2022 STDevelopment. All rights reserved.
 //
 
@@ -38,8 +38,14 @@ class SearchViewController: UIViewController {
         view.backgroundColor = .white
         searchField.attributedPlaceholder = NSAttributedString(string: "Search...", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
         tableView.backgroundColor = UIColor.white
-        
     }
-    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
     
 }

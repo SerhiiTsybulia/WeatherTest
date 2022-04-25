@@ -41,13 +41,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        navigationController?.navigationBar.isHidden = true
+    
         // MARK: - Regeister cells
         
         table.register(WeatherTableViewCell.nib(), forCellReuseIdentifier: WeatherTableViewCell.identifire)
-        table.register(HourTableViewCell.nib(), forCellReuseIdentifier: HourTableViewCell.identifire)
-        
         table.delegate = self
         table.dataSource = self
         
@@ -56,13 +53,21 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         
         table.backgroundColor = UIColor(red: 74/255.0, green: 144/255.0, blue: 226/255.0, alpha: 1.0)
         view.backgroundColor = UIColor(red: 74/255.0, green: 144/255.0, blue: 226/255.0, alpha: 1.0)
-        table.allowsSelection = true
+        table.separatorColor = UIColor.white
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        
         super.viewDidAppear(animated)
         setupLocation()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: animated)
     }
     
     private func locationButtonClicked() {
@@ -162,7 +167,7 @@ extension ViewController: UITableViewDataSource {
 //        let curModel = dummyModels[indexPath.row]
             let cell = tableView.dequeueReusableCell(withIdentifier: WeatherTableViewCell.identifire, for: indexPath)
         if cell.isSelected {
-            print("Thsi cell selected")
+        
         }
 //            cell.textLabel?.text = curModel
             return cell
@@ -180,6 +185,7 @@ extension ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         header
     }
+    
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         400
