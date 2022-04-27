@@ -4,7 +4,6 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -218,20 +217,10 @@
             <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
-                <outlet property="hourTable" destination="0zo-BF-qUs" id="bJ3-8S-hwc"/>
+                <outlet property="forecastView" destination="xro-fb-2OC" id="04x-nx-jvk"/>
             </connections>
             <point key="canvasLocation" x="-368.84057971014494" y="-128.90625"/>
         </view>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gp4-cp-nM5">
-            <rect key="frame" x="0.0" y="0.0" width="50" height="98"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="0zo-BF-qUs" customClass="HourCollectionViewCell" customModule="WeatherTestTask" customModuleProvider="target">
-                <rect key="frame" x="0.0" y="0.0" width="50" height="98"/>
-                <autoresizingMask key="autoresizingMask"/>
-            </collectionViewCellContentView>
-            <size key="customSize" width="50" height="98"/>
-            <point key="canvasLocation" x="-680" y="-28"/>
-        </collectionViewCell>
     </objects>
     <resources>
         <image name="cloud.sun.rain" catalog="system" width="128" height="128"/>
