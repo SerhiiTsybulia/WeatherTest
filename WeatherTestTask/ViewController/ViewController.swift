@@ -25,10 +25,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         }
         return header
     }()
-    
-    
-    //    var locationKey: LocationResponse?
-    
+        
     var dummyModels = [
         "cel 0",
         "cel 1",
