@@ -200,6 +200,20 @@
                         <constraint firstAttribute="height" constant="180" id="hh0-Yh-Jqx"/>
                     </constraints>
                 </view>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="So4-Vv-Wrb" userLabel="Hourly Collection View">
+                    <rect key="frame" x="0.0" y="289" width="479" height="110"/>
+                    <color key="backgroundColor" red="0.4196078479" green="0.61568629740000003" blue="0.91764706370000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <color key="tintColor" red="0.4196078479" green="0.61568629740000003" blue="0.91764706370000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="110" id="ujq-5f-Iig"/>
+                    </constraints>
+                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="c0F-dn-f49">
+                        <size key="itemSize" width="128" height="128"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                </collectionView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="3Ca-Zo-jGP"/>
             <color key="backgroundColor" red="0.289963305" green="0.56372767690000003" blue="0.88515943289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -210,7 +224,10 @@
                 <constraint firstItem="xro-fb-2OC" firstAttribute="top" secondItem="Exr-e9-rVD" secondAttribute="bottom" constant="25" id="IFO-GK-1DE"/>
                 <constraint firstItem="Exr-e9-rVD" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="QHp-Oa-4PE"/>
                 <constraint firstItem="Exr-e9-rVD" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="aVN-TL-uWR"/>
+                <constraint firstAttribute="bottom" secondItem="So4-Vv-Wrb" secondAttribute="bottom" id="dev-Fo-iU4"/>
+                <constraint firstItem="So4-Vv-Wrb" firstAttribute="trailing" secondItem="3Ca-Zo-jGP" secondAttribute="trailing" id="df9-1A-pNw"/>
                 <constraint firstItem="xro-fb-2OC" firstAttribute="trailing" secondItem="3Ca-Zo-jGP" secondAttribute="trailing" id="loV-sI-7uz"/>
+                <constraint firstItem="So4-Vv-Wrb" firstAttribute="leading" secondItem="3Ca-Zo-jGP" secondAttribute="leading" id="tiz-8T-pwi"/>
                 <constraint firstItem="Exr-e9-rVD" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="x3m-ZK-HPW"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
@@ -218,6 +235,7 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="forecastView" destination="xro-fb-2OC" id="04x-nx-jvk"/>
+                <outlet property="hourlyCollectionView" destination="So4-Vv-Wrb" id="RpY-0s-QKI"/>
             </connections>
             <point key="canvasLocation" x="-368.84057971014494" y="-128.90625"/>
         </view>

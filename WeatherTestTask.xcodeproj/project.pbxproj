@@ -22,8 +22,12 @@
 		04BDE57E280D47CF00E07341 /* WeatherTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04BDE57C280D47CF00E07341 /* WeatherTableViewCell.xib */; };
 		EF90CA072815963A005096C2 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF90CA052815963A005096C2 /* SearchViewController.swift */; };
 		EF90CA082815963A005096C2 /* SearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF90CA062815963A005096C2 /* SearchViewController.xib */; };
-		EF90CA0F2816E9FB005096C2 /* WeatherCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF90CA0E2816E9FB005096C2 /* WeatherCollectionView.swift */; };
-		EF90CA112816ED0A005096C2 /* HourCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF90CA102816ED0A005096C2 /* HourCollectionViewCell.swift */; };
+		EF90CA1328196ACE005096C2 /* HourlyCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF90CA1228196ACE005096C2 /* HourlyCollectionView.swift */; };
+		EF90CA1628196AF4005096C2 /* HourlyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF90CA1428196AF4005096C2 /* HourlyCollectionViewCell.swift */; };
+		EF90CA1728196AF4005096C2 /* HourlyCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF90CA1528196AF4005096C2 /* HourlyCollectionViewCell.xib */; };
+		EF90CA19281974D9005096C2 /* WeatherModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF90CA18281974D9005096C2 /* WeatherModels.swift */; };
+		EF90CA212819CA69005096C2 /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF90CA202819CA69005096C2 /* ApiService.swift */; };
+		EF90CA232819CC44005096C2 /* ApiServiceMoc.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF90CA222819CC44005096C2 /* ApiServiceMoc.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,8 +48,12 @@
 		04BDE57C280D47CF00E07341 /* WeatherTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WeatherTableViewCell.xib; sourceTree = "<group>"; };
 		EF90CA052815963A005096C2 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		EF90CA062815963A005096C2 /* SearchViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchViewController.xib; sourceTree = "<group>"; };
-		EF90CA0E2816E9FB005096C2 /* WeatherCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCollectionView.swift; sourceTree = "<group>"; };
-		EF90CA102816ED0A005096C2 /* HourCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourCollectionViewCell.swift; sourceTree = "<group>"; };
+		EF90CA1228196ACE005096C2 /* HourlyCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyCollectionView.swift; sourceTree = "<group>"; };
+		EF90CA1428196AF4005096C2 /* HourlyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyCollectionViewCell.swift; sourceTree = "<group>"; };
+		EF90CA1528196AF4005096C2 /* HourlyCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HourlyCollectionViewCell.xib; sourceTree = "<group>"; };
+		EF90CA18281974D9005096C2 /* WeatherModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModels.swift; sourceTree = "<group>"; };
+		EF90CA202819CA69005096C2 /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
+		EF90CA222819CC44005096C2 /* ApiServiceMoc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiServiceMoc.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,15 +123,13 @@
 		04BDE564280D405700E07341 /* WeatherTestTask */ = {
 			isa = PBXGroup;
 			children = (
-				0455C16B280DD3600092029A /* Header */,
+				EF90CA1F2819CA52005096C2 /* Servises */,
+				EF90CA1C2819C232005096C2 /* Models */,
+				EF90CA1E2819CA25005096C2 /* ViewController */,
 				0455C1722812AE7B0092029A /* LocationViewController */,
 				0455C17A281413DB0092029A /* SearchViewController */,
-				EF90CA0D2816E9B7005096C2 /* WeatherCollectionView */,
-				04BDE57A280D475B00E07341 /* HourCollectionCell */,
-				04BDE579280D474A00E07341 /* WeatherCell */,
 				04BDE565280D405700E07341 /* AppDelegate.swift */,
 				04BDE567280D405700E07341 /* SceneDelegate.swift */,
-				04BDE569280D405700E07341 /* ViewController.swift */,
 				04BDE56B280D405700E07341 /* Main.storyboard */,
 				04BDE56E280D405C00E07341 /* Assets.xcassets */,
 				04BDE570280D405C00E07341 /* LaunchScreen.storyboard */,
@@ -141,20 +147,50 @@
 			path = WeatherCell;
 			sourceTree = "<group>";
 		};
-		04BDE57A280D475B00E07341 /* HourCollectionCell */ = {
+		04BDE57A280D475B00E07341 /* HourlyCollectionCell */ = {
 			isa = PBXGroup;
 			children = (
-				EF90CA102816ED0A005096C2 /* HourCollectionViewCell.swift */,
+				EF90CA1428196AF4005096C2 /* HourlyCollectionViewCell.swift */,
+				EF90CA1528196AF4005096C2 /* HourlyCollectionViewCell.xib */,
 			);
-			path = HourCollectionCell;
+			path = HourlyCollectionCell;
 			sourceTree = "<group>";
 		};
-		EF90CA0D2816E9B7005096C2 /* WeatherCollectionView */ = {
+		EF90CA0D2816E9B7005096C2 /* HourlyCollectionView */ = {
 			isa = PBXGroup;
 			children = (
-				EF90CA0E2816E9FB005096C2 /* WeatherCollectionView.swift */,
+				EF90CA1228196ACE005096C2 /* HourlyCollectionView.swift */,
 			);
-			path = WeatherCollectionView;
+			path = HourlyCollectionView;
+			sourceTree = "<group>";
+		};
+		EF90CA1C2819C232005096C2 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				EF90CA18281974D9005096C2 /* WeatherModels.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		EF90CA1E2819CA25005096C2 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				EF90CA0D2816E9B7005096C2 /* HourlyCollectionView */,
+				04BDE57A280D475B00E07341 /* HourlyCollectionCell */,
+				04BDE579280D474A00E07341 /* WeatherCell */,
+				0455C16B280DD3600092029A /* Header */,
+				04BDE569280D405700E07341 /* ViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		EF90CA1F2819CA52005096C2 /* Servises */ = {
+			isa = PBXGroup;
+			children = (
+				EF90CA202819CA69005096C2 /* ApiService.swift */,
+				EF90CA222819CC44005096C2 /* ApiServiceMoc.swift */,
+			);
+			path = Servises;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -223,6 +259,7 @@
 				04BDE56D280D405700E07341 /* Main.storyboard in Resources */,
 				EF90CA082815963A005096C2 /* SearchViewController.xib in Resources */,
 				0455C1762812AEA10092029A /* LocationViewController.xib in Resources */,
+				EF90CA1728196AF4005096C2 /* HourlyCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -235,13 +272,16 @@
 			files = (
 				0455C1752812AEA10092029A /* LocationViewController.swift in Sources */,
 				EF90CA072815963A005096C2 /* SearchViewController.swift in Sources */,
+				EF90CA212819CA69005096C2 /* ApiService.swift in Sources */,
+				EF90CA1628196AF4005096C2 /* HourlyCollectionViewCell.swift in Sources */,
 				04BDE57D280D47CF00E07341 /* WeatherTableViewCell.swift in Sources */,
 				04BDE56A280D405700E07341 /* ViewController.swift in Sources */,
+				EF90CA19281974D9005096C2 /* WeatherModels.swift in Sources */,
 				04BDE566280D405700E07341 /* AppDelegate.swift in Sources */,
-				EF90CA0F2816E9FB005096C2 /* WeatherCollectionView.swift in Sources */,
+				EF90CA232819CC44005096C2 /* ApiServiceMoc.swift in Sources */,
 				0455C16F280DD40C0092029A /* Header.swift in Sources */,
-				EF90CA112816ED0A005096C2 /* HourCollectionViewCell.swift in Sources */,
 				04BDE568280D405700E07341 /* SceneDelegate.swift in Sources */,
+				EF90CA1328196ACE005096C2 /* HourlyCollectionView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
