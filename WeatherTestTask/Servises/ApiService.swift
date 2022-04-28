@@ -55,15 +55,15 @@ final class ApiService {
             }
             
             do {
-                let weatherDto = try JSONDecoder().decode(DailyWeatherDto.self, from: data)
-                completionHandler(.success(weatherDto))
+                let dailyWeatherDto = try JSONDecoder().decode(DailyWeatherDto.self, from: data)
+                completionHandler(.success(dailyWeatherDto))
             }
             catch {
                 completionHandler(.failure(error))
             }
         }).resume()
     }
-    // MARK: - DailyWeather request
+    // MARK: - For5days request
     
     private func requestWeatherFor5Days(locationKey: String, completionHandler: @escaping (Result<For5DaysWeatherDto, Error>) -> Void) {
         let url = "https://dataservice.accuweather.com/forecasts/v1/daily/5day/\(locationKey)?apikey=\(apiKey)&details=true&metric=true"

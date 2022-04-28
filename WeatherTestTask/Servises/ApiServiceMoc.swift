@@ -14,6 +14,7 @@ final class ApiServiceMoc {
 }
 
 extension ApiServiceMoc: ApiServiceProtocol {
+    
     func requestWeatherFor5Days(at location: CLLocationCoordinate2D, completionHandler: @escaping (Result<For5DaysWeatherDto, Error>) -> Void) {
         completionHandler(.failure(MyError()))
     }

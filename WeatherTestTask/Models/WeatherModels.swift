@@ -128,10 +128,23 @@ struct For5DaysWeatherDto: Codable{
 
 struct HourlyWeatherDto: Codable{
     let dateTime: String
-    let temperature: [Temperature]
+    let temperature: Temperature
     
     enum CodingKeys: String, CodingKey {
         case dateTime = "DateTime"
         case temperature = "Temperature"
+    }
+}
+
+class HourlyWeather{
+    var hourlyWeather = [HourlyWeatherDto]()
+    init(){
+        setup()
+    }
+    func setup(){
+        let h1 = HourlyWeatherDto(dateTime: "17:00", temperature: Temperature(value: 16.4, unit: "C", unitType: 17))
+        let h2 = HourlyWeatherDto(dateTime: "17:00", temperature: Temperature(value: 16.4, unit: "C", unitType: 17))
+        let h3 = HourlyWeatherDto(dateTime: "17:00", temperature: Temperature(value: 16.4, unit: "C", unitType: 17))
+        self.hourlyWeather = [h1,h2,h3]
     }
 }

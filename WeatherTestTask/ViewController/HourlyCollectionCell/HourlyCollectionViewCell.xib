@@ -4,6 +4,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -39,7 +40,7 @@
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
-            <color key="backgroundColor" red="0.4196078479" green="0.61568629740000003" blue="0.91764706370000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color key="backgroundColor" systemColor="systemYellowColor"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="CxS-G9-CRy" secondAttribute="trailing" constant="34" id="4zD-Cl-Uad"/>
                 <constraint firstAttribute="trailing" secondItem="d3v-h7-KTw" secondAttribute="trailing" constant="25" id="Joe-sx-xfd"/>
@@ -52,10 +53,18 @@
                 <constraint firstItem="d3v-h7-KTw" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="26" id="x2J-C9-IC1"/>
             </constraints>
             <size key="customSize" width="100" height="136"/>
+            <connections>
+                <outlet property="weatherPicture" destination="qQi-tg-Lsg" id="dkf-Qw-sdp"/>
+                <outlet property="weatherTemperature" destination="CxS-G9-CRy" id="c4V-lw-M3y"/>
+                <outlet property="weatherTime" destination="d3v-h7-KTw" id="UaI-CN-cAY"/>
+            </connections>
             <point key="canvasLocation" x="173.91304347826087" y="141.29464285714286"/>
         </collectionViewCell>
     </objects>
     <resources>
         <image name="cloud.sun.rain" catalog="system" width="128" height="128"/>
+        <systemColor name="systemYellowColor">
+            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
     </resources>
 </document>

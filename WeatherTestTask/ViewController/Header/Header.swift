@@ -13,7 +13,9 @@ class Header: UIView{
     var positionClickHandler: (() -> Void)?
     var searchClickHandler: (() -> Void)?
     
-
+    
+    var modelsForCollection: HourlyWeather = HourlyWeather()
+    
     @IBOutlet weak var hourlyCollectionView: UICollectionView!
     @IBAction func locationClicked() { positionClickHandler?()}
     @IBAction func searchClicked() { searchClickHandler?()}
@@ -25,8 +27,9 @@ class Header: UIView{
         hourlyCollectionView.delegate = self
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    required init?(coder aDecoder: NSCoder) {
+        
+        
     }
     
     static func create() -> Header? {
@@ -34,12 +37,26 @@ class Header: UIView{
     }
     
 }
-extension Header: UICollectionViewDataSource, UICollectionViewDelegate {
+extension Header: UICollectionViewDataSource, UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 0
+        return modelsForCollection.hourlyWeather.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        .init(frame: .zero)
+        let cell = hourlyCollectionView.dequeueReusableCell(withReuseIdentifier: "HourlyCollectionViewCell", for: indexPath) as! HourlyCollectionViewCell
+        
+        let hourlyWeath = modelsForCollection.hourlyWeather[indexPath.item]
+        cell.setupCell(model: hourlyWeath)
+        return cell
+
     }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 80, height: 110)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        0
+    }
+    
 }

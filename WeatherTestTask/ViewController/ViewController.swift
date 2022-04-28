@@ -25,7 +25,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         }
         return header
     }()
-        
+    
     var dummyModels = [
         "cel 0",
         "cel 1",
@@ -105,9 +105,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         // TODO: update UI
         preconditionFailure("!!! UPDATE UI !!!")
     }
-
     
-// MARK: - Location impl
+    
+    // MARK: - Location impl
     
     func setupLocation() {
         locationManger.delegate = self
@@ -120,10 +120,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
 extension ViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //        return models.count
         dummyModels.count
     }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //        let curModel = dummyModels[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: WeatherTableViewCell.identifire, for: indexPath)
@@ -142,18 +140,13 @@ extension ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         nil
     }
-    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         header
     }
-    
-    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         400
     }
-    
     func tableView(_ tableView: UITableView, heightForRowAt: IndexPath) -> CGFloat{
         70
     }
-    
 }
