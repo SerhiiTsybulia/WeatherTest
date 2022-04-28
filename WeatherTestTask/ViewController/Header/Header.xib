@@ -4,6 +4,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -200,20 +201,28 @@
                         <constraint firstAttribute="height" constant="180" id="hh0-Yh-Jqx"/>
                     </constraints>
                 </view>
-                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="So4-Vv-Wrb" userLabel="Hourly Collection View">
-                    <rect key="frame" x="0.0" y="289" width="479" height="110"/>
-                    <color key="backgroundColor" red="0.4196078479" green="0.61568629740000003" blue="0.91764706370000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                    <color key="tintColor" red="0.4196078479" green="0.61568629740000003" blue="0.91764706370000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zy9-bZ-uEg">
+                    <rect key="frame" x="0.0" y="299" width="479" height="100"/>
+                    <subviews>
+                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="5V0-th-D5F" customClass="HourlyCollectionView" customModule="WeatherTestTask" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="479" height="100"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="6J4-ad-4B2">
+                                <size key="itemSize" width="128" height="128"/>
+                                <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            </collectionViewFlowLayout>
+                        </collectionView>
+                    </subviews>
                     <constraints>
-                        <constraint firstAttribute="height" constant="110" id="ujq-5f-Iig"/>
+                        <constraint firstAttribute="height" constant="100" id="8dv-EY-Jeb"/>
+                        <constraint firstAttribute="trailing" secondItem="5V0-th-D5F" secondAttribute="trailing" id="Dzf-hH-COK"/>
+                        <constraint firstItem="5V0-th-D5F" firstAttribute="leading" secondItem="Zy9-bZ-uEg" secondAttribute="leading" id="bZ4-Vs-j7b"/>
+                        <constraint firstItem="5V0-th-D5F" firstAttribute="top" secondItem="Zy9-bZ-uEg" secondAttribute="top" id="me9-en-nJ8"/>
+                        <constraint firstAttribute="bottom" secondItem="5V0-th-D5F" secondAttribute="bottom" id="q6y-OD-Pbs"/>
                     </constraints>
-                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="c0F-dn-f49">
-                        <size key="itemSize" width="128" height="128"/>
-                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                    </collectionViewFlowLayout>
-                </collectionView>
+                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="3Ca-Zo-jGP"/>
             <color key="backgroundColor" red="0.289963305" green="0.56372767690000003" blue="0.88515943289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -222,20 +231,21 @@
                 <constraint firstItem="xro-fb-2OC" firstAttribute="leading" secondItem="3Ca-Zo-jGP" secondAttribute="leading" id="9mn-pV-4qp"/>
                 <constraint firstAttribute="trailing" secondItem="Exr-e9-rVD" secondAttribute="trailing" id="FzA-Oq-8V3"/>
                 <constraint firstItem="xro-fb-2OC" firstAttribute="top" secondItem="Exr-e9-rVD" secondAttribute="bottom" constant="25" id="IFO-GK-1DE"/>
+                <constraint firstItem="Zy9-bZ-uEg" firstAttribute="trailing" secondItem="3Ca-Zo-jGP" secondAttribute="trailing" id="JMX-h1-WCj"/>
                 <constraint firstItem="Exr-e9-rVD" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="QHp-Oa-4PE"/>
                 <constraint firstItem="Exr-e9-rVD" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="aVN-TL-uWR"/>
-                <constraint firstAttribute="bottom" secondItem="So4-Vv-Wrb" secondAttribute="bottom" id="dev-Fo-iU4"/>
-                <constraint firstItem="So4-Vv-Wrb" firstAttribute="trailing" secondItem="3Ca-Zo-jGP" secondAttribute="trailing" id="df9-1A-pNw"/>
+                <constraint firstAttribute="bottom" secondItem="Zy9-bZ-uEg" secondAttribute="bottom" id="alg-A0-F0g"/>
+                <constraint firstItem="Zy9-bZ-uEg" firstAttribute="leading" secondItem="3Ca-Zo-jGP" secondAttribute="leading" id="ga4-dP-jYd"/>
                 <constraint firstItem="xro-fb-2OC" firstAttribute="trailing" secondItem="3Ca-Zo-jGP" secondAttribute="trailing" id="loV-sI-7uz"/>
-                <constraint firstItem="So4-Vv-Wrb" firstAttribute="leading" secondItem="3Ca-Zo-jGP" secondAttribute="leading" id="tiz-8T-pwi"/>
                 <constraint firstItem="Exr-e9-rVD" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="x3m-ZK-HPW"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="contentView" destination="Zy9-bZ-uEg" id="zr5-EL-gST"/>
                 <outlet property="forecastView" destination="xro-fb-2OC" id="04x-nx-jvk"/>
-                <outlet property="hourlyCollectionView" destination="So4-Vv-Wrb" id="RpY-0s-QKI"/>
+                <outlet property="hourlyCollectionView" destination="5V0-th-D5F" id="0hu-UR-Wtm"/>
             </connections>
             <point key="canvasLocation" x="-368.84057971014494" y="-128.90625"/>
         </view>
@@ -249,5 +259,8 @@
         <image name="mappin" catalog="system" width="105" height="128"/>
         <image name="thermometer" catalog="system" width="81" height="128"/>
         <image name="wind" catalog="system" width="128" height="103"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

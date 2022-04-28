@@ -126,42 +126,42 @@ extension ApiService: ApiServiceProtocol {
             }
         })
     }
+    
     func requestWeatherFor5Days(at location: CLLocationCoordinate2D, completionHandler: @escaping (Result<For5DaysWeatherDto, Error>) -> Void) {
         requestLocationKey(location: location, completionHandler: { result in
-        switch result {
-        case .failure(let error):
-            completionHandler(.failure(error))
-        case .success(let key):
-            self.requestWeatherFor5Days(locationKey: key, completionHandler: { result in
-                switch result {
-                case .failure(let error):
-                    completionHandler(.failure(error))
-                case .success(let weather):
-                    completionHandler(.success(weather))
-                }
-            })
-        }
-    })
-}
-        
+            switch result {
+            case .failure(let error):
+                completionHandler(.failure(error))
+            case .success(let key):
+                self.requestWeatherFor5Days(locationKey: key, completionHandler: { result in
+                    switch result {
+                    case .failure(let error):
+                        completionHandler(.failure(error))
+                    case .success(let weather):
+                        completionHandler(.success(weather))
+                    }
+                })
+            }
+        })
+    }
+    
     func requestHourlyWeather(at location: CLLocationCoordinate2D, completionHandler: @escaping (Result<HourlyWeatherDto, Error>) -> Void){
         requestLocationKey(location: location, completionHandler: { result in
-        switch result {
-        case .failure(let error):
-            completionHandler(.failure(error))
-        case .success(let key):
-            self.requestHourlyWeather(locationKey: key, completionHandler: { result in
-                switch result {
-                case .failure(let error):
-                    completionHandler(.failure(error))
-                case .success(let weather):
-                    completionHandler(.success(weather))
-                }
-            })
-        }
-    })
-}
-    
+            switch result {
+            case .failure(let error):
+                completionHandler(.failure(error))
+            case .success(let key):
+                self.requestHourlyWeather(locationKey: key, completionHandler: { result in
+                    switch result {
+                    case .failure(let error):
+                        completionHandler(.failure(error))
+                    case .success(let weather):
+                        completionHandler(.success(weather))
+                    }
+                })
+            }
+        })
+    }
 }
 
 struct MyError: Error {

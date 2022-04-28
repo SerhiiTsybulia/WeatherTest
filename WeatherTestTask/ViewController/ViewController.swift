@@ -91,6 +91,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     private func updateWeather(with location: CLLocationCoordinate2D) {
+        
         apiService.requestDailyWeather(at: location, completionHandler: { [weak self] response in
             switch response {
             case .failure(let error):
@@ -99,13 +100,26 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                 self?.updateWeather(with: dailyWeather)
             }
         })
+        
+        apiService.requestHourlyWeather(at: location, completionHandler: { [weak self] response in
+            switch response {
+            case .failure(let error):
+                print("Get daily weather failure: \(error)")
+            case .success(let hourlyWeather):
+                self?.updateWeather(with: hourlyWeather)
+            }
+        })
     }
     
     private func updateWeather(with model: DailyWeatherDto) {
         // TODO: update UI
-        preconditionFailure("!!! UPDATE UI !!!")
+        preconditionFailure("!!! UPDATE UI DailyWeatherDto !!!")
     }
-    
+
+    private func updateWeather(with model: HourlyWeatherDto) {
+        // TODO: update UI
+        preconditionFailure("!!! UPDATE UI HourlyWeatherDto !!!")
+    }
     
     // MARK: - Location impl
     

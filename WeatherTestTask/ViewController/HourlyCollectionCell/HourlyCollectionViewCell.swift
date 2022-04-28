@@ -9,11 +9,13 @@
 import UIKit
 
 class HourlyCollectionViewCell: UICollectionViewCell {
+    
+    static var nib: UINib { UINib(nibName: "HourlyCollectionViewCell", bundle: .main) }
+    static var identifier = "HourlyCollectionViewCell"
 
     @IBOutlet weak var weatherTime: UILabel!
     @IBOutlet weak var weatherPicture: UIImageView!
     @IBOutlet weak var weatherTemperature: UILabel!
-    
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -25,5 +27,4 @@ class HourlyCollectionViewCell: UICollectionViewCell {
         self.weatherTemperature.text = "\(model.temperature.value)°"
 //        self.weatherPicture.image = UIImage(named: "cloud.sun.rain")
     }
-            
 }
