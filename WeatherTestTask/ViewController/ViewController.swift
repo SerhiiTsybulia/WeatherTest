@@ -104,9 +104,17 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         apiService.requestHourlyWeather(at: location, completionHandler: { [weak self] response in
             switch response {
             case .failure(let error):
-                print("Get daily weather failure: \(error)")
+                print("Get hourly weather failure: \(error)")
             case .success(let hourlyWeather):
                 self?.updateWeather(with: hourlyWeather)
+            }
+        })
+        apiService.requestWeatherFor5Days(at: location, completionHandler: { [weak self] response in
+            switch response {
+            case .failure(let error):
+                print("Get daily weather failure: \(error)")
+            case .success(let weatherFor5Days):
+                self?.updateWeather(with: weatherFor5Days)
             }
         })
     }
@@ -119,6 +127,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     private func updateWeather(with model: HourlyWeatherDto) {
         // TODO: update UI
         preconditionFailure("!!! UPDATE UI HourlyWeatherDto !!!")
+    }
+    
+    private func updateWeather(with model: For5DaysWeatherDto) {
+        // TODO: update UI
+        preconditionFailure("!!! UPDATE UI For5DaysWeatherDto !!!")
     }
     
     // MARK: - Location impl

@@ -142,9 +142,11 @@ class HourlyWeather{
         setup()
     }
     func setup(){
-        let h1 = HourlyWeatherDto(dateTime: "17:00", temperature: Temperature(value: 16.4, unit: "C", unitType: 17))
-        let h2 = HourlyWeatherDto(dateTime: "17:00", temperature: Temperature(value: 16.4, unit: "C", unitType: 17))
-        let h3 = HourlyWeatherDto(dateTime: "17:00", temperature: Temperature(value: 16.4, unit: "C", unitType: 17))
-        self.hourlyWeather = [h1,h2,h3]
+        let h1 = HourlyWeatherDto(dateTime: "11:00", temperature: Temperature(value: 11.4, unit: "C", unitType: 17))
+        let h2 = HourlyWeatherDto(dateTime: "12:00", temperature: Temperature(value: 12.4, unit: "C", unitType: 17))
+        let h3 = HourlyWeatherDto(dateTime: "13:00", temperature: Temperature(value: 13.4, unit: "C", unitType: 17))
+        let h4 = HourlyWeatherDto(dateTime: "14:00", temperature: Temperature(value: 14.4, unit: "C", unitType: 17))
+        let h5 = HourlyWeatherDto(dateTime: "15:00", temperature: Temperature(value: 15.4, unit: "C", unitType: 17))
+        self.hourlyWeather = [h1, h2, h3, h4, h5]
     }
 }

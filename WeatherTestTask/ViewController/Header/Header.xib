@@ -4,7 +4,6 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -204,9 +203,10 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zy9-bZ-uEg">
                     <rect key="frame" x="0.0" y="299" width="479" height="100"/>
                     <subviews>
-                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="5V0-th-D5F" customClass="HourlyCollectionView" customModule="WeatherTestTask" customModuleProvider="target">
+                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="5V0-th-D5F" customClass="HourlyCollectionView" customModule="WeatherTestTask" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="0.0" width="479" height="100"/>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <color key="backgroundColor" red="0.4196078479" green="0.61568629740000003" blue="0.91764706370000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <color key="tintColor" red="0.4196078479" green="0.61568629740000003" blue="0.91764706370000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="6J4-ad-4B2">
                                 <size key="itemSize" width="128" height="128"/>
                                 <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -244,7 +244,6 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="contentView" destination="Zy9-bZ-uEg" id="zr5-EL-gST"/>
-                <outlet property="forecastView" destination="xro-fb-2OC" id="04x-nx-jvk"/>
                 <outlet property="hourlyCollectionView" destination="5V0-th-D5F" id="0hu-UR-Wtm"/>
             </connections>
             <point key="canvasLocation" x="-368.84057971014494" y="-128.90625"/>
@@ -259,8 +258,5 @@
         <image name="mappin" catalog="system" width="105" height="128"/>
         <image name="thermometer" catalog="system" width="81" height="128"/>
         <image name="wind" catalog="system" width="128" height="103"/>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
     </resources>
 </document>
