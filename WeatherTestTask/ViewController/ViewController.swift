@@ -90,15 +90,15 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     private func updateWeather(with location: CLLocationCoordinate2D) {
         
-        apiService.requestDailyWeather(at: location, completionHandler: { [weak self] response in
-            switch response {
-            case .failure(let error):
-                print("Get daily weather failure: \(error)")
-            case .success(let dailyWeather):
-                self?.updateWeather(with: dailyWeather)
-            }
-        })
-        
+//        apiService.requestDailyWeather(at: location, completionHandler: { [weak self] response in
+//            switch response {
+//            case .failure(let error):
+//                print("Get daily weather failure: \(error)")
+//            case .success(let dailyWeather):
+//                self?.updateWeather(with: dailyWeather)
+//            }
+//        })
+//
         apiService.requestHourlyWeather(at: location, completionHandler: { [weak self] response in
             switch response {
             case .failure(let error):
@@ -117,15 +117,16 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         })
     }
     
-    private func updateWeather(with model: DailyWeatherDto) {
-        header?.updateWeather(with: model)
-    }
+//    private func updateWeather(with model: For5DaysWeatherDto) {
+//        header?.updateWeather(with: model)
+//    }
 
-    private func updateWeather(with model: HourlyWeatherDto) {
+    private func updateWeather(with model: Instruction) {
         header?.updateWeather(with: model)
     }
     
     private func updateWeather(with model: For5DaysWeatherDto) {
+        
         DispatchQueue.main.async {
             self.table.reloadData()
         }

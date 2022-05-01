@@ -38,5 +38,13 @@ class WeatherTableViewCell: UITableViewCell {
     static func nib() -> UINib{
         return UINib(nibName: "WeatherTableViewCell", bundle: nil)
     }
+    func configureFor5Days (model: DailyForecast) {
+        self.dayLabel.text = String(model.date)
+        
+        let max = model.temperature.maximum
+        let min = model.temperature.minimum
+        
+        self.temperatureLabel.text = "\(max)°/\(min)°"
+    }
 }
 

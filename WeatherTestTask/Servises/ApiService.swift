@@ -10,9 +10,8 @@ import Foundation
 import CoreLocation
 
 protocol ApiServiceProtocol {
-    func requestDailyWeather(at location: CLLocationCoordinate2D, completionHandler: @escaping (Result<DailyWeatherDto, Error>) -> Void)
     func requestWeatherFor5Days(at location: CLLocationCoordinate2D, completionHandler: @escaping (Result<For5DaysWeatherDto, Error>) -> Void)
-    func requestHourlyWeather(at location: CLLocationCoordinate2D, completionHandler: @escaping (Result<HourlyWeatherDto, Error>) -> Void)
+    func requestHourlyWeather(at location: CLLocationCoordinate2D, completionHandler: @escaping (Result<Instruction, Error>) -> Void)
 }
 
 // MARK: - ApiService
@@ -45,24 +44,24 @@ final class ApiService {
     
     // MARK: - DailyWeather request
     
-    private func requestDailyWeather(locationKey: String, completionHandler: @escaping (Result<DailyWeatherDto, Error>) -> Void) {
-        let url = "https://dataservice.accuweather.com/forecasts/v1/daily/1day/\(locationKey)?apikey=\(apiKey)&details=true&metric=true"
-        URLSession.shared.dataTask(with: URL(string: url)!, completionHandler: { data, response, error in
-            //Validation
-            guard let data = data, error == nil else {
-                completionHandler(.failure(error ?? MyError()))
-                return
-            }
-            
-            do {
-                let dailyWeatherDto = try JSONDecoder().decode(DailyWeatherDto.self, from: data)
-                completionHandler(.success(dailyWeatherDto))
-            }
-            catch {
-                completionHandler(.failure(error))
-            }
-        }).resume()
-    }
+//    private func requestDailyWeather(locationKey: String, completionHandler: @escaping (Result<DailyWeatherDto, Error>) -> Void) {
+//        let url = "https://dataservice.accuweather.com/forecasts/v1/daily/1day/\(locationKey)?apikey=\(apiKey)&details=true&metric=true"
+//        URLSession.shared.dataTask(with: URL(string: url)!, completionHandler: { data, response, error in
+//            //Validation
+//            guard let data = data, error == nil else {
+//                completionHandler(.failure(error ?? MyError()))
+//                return
+//            }
+//            
+//            do {
+//                let dailyWeatherDto = try JSONDecoder().decode(DailyWeatherDto.self, from: data)
+//                completionHandler(.success(dailyWeatherDto))
+//            }
+//            catch {
+//                completionHandler(.failure(error))
+//            }
+//        }).resume()
+//    }
     // MARK: - For5days request
     
     private func requestWeatherFor5Days(locationKey: String, completionHandler: @escaping (Result<For5DaysWeatherDto, Error>) -> Void) {
@@ -85,7 +84,7 @@ final class ApiService {
     }
     // MARK: - HourlyWeather request
     
-    private func requestHourlyWeather(locationKey: String, completionHandler: @escaping (Result<HourlyWeatherDto, Error>) -> Void) {
+    private func requestHourlyWeather(locationKey: String, completionHandler: @escaping (Result<Instruction, Error>) -> Void) {
         let url = "https://dataservice.accuweather.com/forecasts/v1/hourly/12hour/\(locationKey)?apikey=\(apiKey)&details=true&metric=true"
         URLSession.shared.dataTask(with: URL(string: url)!, completionHandler: { data, response, error in
             //Validation
@@ -94,7 +93,7 @@ final class ApiService {
                 return
             }
             do {
-                let hourlyWeatherDto = try JSONDecoder().decode(HourlyWeatherDto.self, from: data)
+                let hourlyWeatherDto = try JSONDecoder().decode(Instruction.self, from: data)
                 completionHandler(.success(hourlyWeatherDto))
             }
             catch {
@@ -110,23 +109,23 @@ final class ApiService {
 
 extension ApiService: ApiServiceProtocol {
     
-    func requestDailyWeather(at location: CLLocationCoordinate2D, completionHandler: @escaping (Result<DailyWeatherDto, Error>) -> Void) {
-        requestLocationKey(location: location, completionHandler: { result in
-            switch result {
-            case .failure(let error):
-                completionHandler(.failure(error))
-            case .success(let key):
-                self.requestDailyWeather(locationKey: key, completionHandler: { result in
-                    switch result {
-                    case .failure(let error):
-                        completionHandler(.failure(error))
-                    case .success(let weather):
-                        completionHandler(.success(weather))
-                    }
-                })
-            }
-        })
-    }
+//    func requestDailyWeather(at location: CLLocationCoordinate2D, completionHandler: @escaping (Result<DailyWeatherDto, Error>) -> Void) {
+//        requestLocationKey(location: location, completionHandler: { result in
+//            switch result {
+//            case .failure(let error):
+//                completionHandler(.failure(error))
+//            case .success(let key):
+//                self.requestDailyWeather(locationKey: key, completionHandler: { result in
+//                    switch result {
+//                    case .failure(let error):
+//                        completionHandler(.failure(error))
+//                    case .success(let weather):
+//                        completionHandler(.success(weather))
+//                    }
+//                })
+//            }
+//        })
+//    }
     
     func requestWeatherFor5Days(at location: CLLocationCoordinate2D, completionHandler: @escaping (Result<For5DaysWeatherDto, Error>) -> Void) {
         requestLocationKey(location: location, completionHandler: { result in
@@ -146,7 +145,7 @@ extension ApiService: ApiServiceProtocol {
         })
     }
     
-    func requestHourlyWeather(at location: CLLocationCoordinate2D, completionHandler: @escaping (Result<HourlyWeatherDto, Error>) -> Void){
+    func requestHourlyWeather(at location: CLLocationCoordinate2D, completionHandler: @escaping (Result<Instruction, Error>) -> Void){
         requestLocationKey(location: location, completionHandler: { result in
             switch result {
             case .failure(let error):

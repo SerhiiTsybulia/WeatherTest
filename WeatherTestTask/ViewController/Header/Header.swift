@@ -12,8 +12,8 @@ protocol HeaderProtocol {
     var positionClickHandler: (() -> Void)? { get set }
     var searchClickHandler: (() -> Void)? { get set }
     
-    func updateWeather(with model: DailyWeatherDto)
-    func updateWeather(with model: HourlyWeatherDto)
+    func updateWeather(with model: For5DaysWeatherDto)
+    func updateWeather(with model: Instruction)
 }
 
 class Header: UIView {
@@ -25,10 +25,12 @@ class Header: UIView {
     var positionClickHandler: (() -> Void)?
     var searchClickHandler: (() -> Void)?
     
-    var modelsForCollection: HourlyWeather = HourlyWeather() //FOR TESTING
+//    var modelsForCollection: HourlyWeatherDto = HourlyWeather() //FOR TESTING
     
-    private var dailyWeatherModel: DailyWeatherDto?
-    private var hourlyWeatherModel: HourlyWeatherDto?
+    private var dailyWeatherModel: For5DaysWeatherDto?
+    private var hourlyWeatherList: HourlyWeather?
+    private var hourlyWeatherModel: Instruction?
+    
     
     @IBOutlet var contentView: UIView!
     @IBOutlet weak var hourlyCollectionView: UICollectionView!
@@ -54,12 +56,12 @@ class Header: UIView {
 // MARK: - HeaderProtocol impl
 
 extension Header: HeaderProtocol {
-    func updateWeather(with model: DailyWeatherDto) {
+    func updateWeather(with model: For5DaysWeatherDto) {
         dailyWeatherModel = model
         // TODO: update UI
     }
 
-    func updateWeather(with model: HourlyWeatherDto) {
+    func updateWeather(with model: Instruction) {
         hourlyWeatherModel = model
         hourlyCollectionView.reloadData()
     }
@@ -69,14 +71,14 @@ extension Header: HeaderProtocol {
 
 extension Header: UICollectionViewDataSource, UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return modelsForCollection.hourlyWeather.count
+        return hourlyWeatherList?.instructions.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = hourlyCollectionView.dequeueReusableCell(withReuseIdentifier: HourlyCollectionViewCell.identifier, for: indexPath) as! HourlyCollectionViewCell
         
-        let hourlyWeath = modelsForCollection.hourlyWeather[indexPath.item]
-        cell.setupCell(model: hourlyWeath)
+        let hourlyWeath = hourlyWeatherList?.instructions[indexPath.item]
+        cell.setupCell(model: hourlyWeatherModel!)
         return cell
 
     }

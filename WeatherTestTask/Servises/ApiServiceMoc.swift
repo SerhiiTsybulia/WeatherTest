@@ -19,11 +19,11 @@ extension ApiServiceMoc: ApiServiceProtocol {
         completionHandler(.failure(MyError()))
     }
     
-    func requestHourlyWeather(at location: CLLocationCoordinate2D, completionHandler: @escaping (Result<HourlyWeatherDto, Error>) -> Void) {
+    func requestHourlyWeather(at location: CLLocationCoordinate2D, completionHandler: @escaping (Result<Instruction, Error>) -> Void) {
         completionHandler(.failure(MyError()))
     }
     
-    func requestDailyWeather(at location: CLLocationCoordinate2D, completionHandler: @escaping (Result<DailyWeatherDto, Error>) -> Void) {
-        completionHandler(.failure(MyError()))
-    }
+//    func requestDailyWeather(at location: CLLocationCoordinate2D, completionHandler: @escaping (Result<DailyWeatherDto, Error>) -> Void) {
+//        completionHandler(.failure(MyError()))
+//    }
 }

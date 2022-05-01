@@ -22,7 +22,7 @@ class HourlyCollectionViewCell: UICollectionViewCell {
         // Initialization code
     }
 
-    func setupCell(model: HourlyWeatherDto){
+    func setupCell(model: Instruction){
         self.weatherTime.text = model.dateTime
         self.weatherTemperature.text = "\(model.temperature.value)°"
 //        self.weatherPicture.image = UIImage(named: "cloud.sun.rain")

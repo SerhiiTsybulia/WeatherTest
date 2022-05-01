@@ -51,10 +51,10 @@ struct GeoPosition: Codable {
 // MARK: - Weather for 5 days model
 
 struct For5DaysWeatherDto: Codable {
-    let instructions: [Instruction]
+    let instructions: [Instructions]
 }
 
-struct Instruction: Codable {
+struct Instructions: Codable {
     let dailyForecasts: [DailyForecast]
     
     enum CodingKeys: String, CodingKey {
@@ -63,7 +63,7 @@ struct Instruction: Codable {
 }
 
 struct DailyForecast: Codable {
-    let date: Date
+    let date: String
     let temperature: TemperatureDto
     
     enum CodinKeys: String, CodingKey {
@@ -125,8 +125,12 @@ struct TemperatureDto: Codable {
 
 // MARK: - Hourly weather model
 
-struct HourlyWeatherDto: Codable {
-    let dateTime: Date
+struct HourlyWeather: Codable {
+    let instructions: [Instruction]
+}
+
+struct Instruction: Codable {
+    let dateTime: String
     let weatherIcon: Int
     let temperature: Temperature
     
