@@ -13,7 +13,7 @@ protocol HeaderProtocol {
     var searchClickHandler: (() -> Void)? { get set }
     
     func updateWeather(with model: For5DaysWeatherDto)
-    func updateWeather(with model: Instruction)
+    func updateWeather(with models: [HourlyWeatherDto])
 }
 
 class Header: UIView {
@@ -28,8 +28,7 @@ class Header: UIView {
 //    var modelsForCollection: HourlyWeatherDto = HourlyWeather() //FOR TESTING
     
     private var dailyWeatherModel: For5DaysWeatherDto?
-    private var hourlyWeatherList: HourlyWeather?
-    private var hourlyWeatherModel: Instruction?
+    private var hourlyWeatherModels: [HourlyWeatherDto]?
     
     
     @IBOutlet var contentView: UIView!
@@ -61,9 +60,11 @@ extension Header: HeaderProtocol {
         // TODO: update UI
     }
 
-    func updateWeather(with model: Instruction) {
-        hourlyWeatherModel = model
-        hourlyCollectionView.reloadData()
+    func updateWeather(with models: [HourlyWeatherDto]) {
+        hourlyWeatherModels = models
+        DispatchQueue.main.async {
+            self.hourlyCollectionView.reloadData()
+        }
     }
 }
 
@@ -71,16 +72,14 @@ extension Header: HeaderProtocol {
 
 extension Header: UICollectionViewDataSource, UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return hourlyWeatherList?.instructions.count ?? 0
+        return hourlyWeatherModels?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = hourlyCollectionView.dequeueReusableCell(withReuseIdentifier: HourlyCollectionViewCell.identifier, for: indexPath) as! HourlyCollectionViewCell
-        
-        let hourlyWeath = hourlyWeatherList?.instructions[indexPath.item]
-        cell.setupCell(model: hourlyWeatherModel!)
-        return cell
-
+        let cell = hourlyCollectionView.dequeueReusableCell(withReuseIdentifier: HourlyCollectionViewCell.identifier, for: indexPath) as? HourlyCollectionViewCell
+        (hourlyWeatherModels?[indexPath.item]).map { cell?.setupCell(model: $0) }
+        precondition(cell != nil, "cell must be not nil")
+        return cell ?? .init(frame: .zero)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {

@@ -125,12 +125,12 @@ struct TemperatureDto: Codable {
 
 // MARK: - Hourly weather model
 
-struct HourlyWeather: Codable {
-    let instructions: [Instruction]
-}
-
-struct Instruction: Codable {
+struct HourlyWeatherDto: Codable {
+    
     let dateTime: String
+    var date: Date? {
+        try? Date(dateTime, strategy: .iso8601)
+    }
     let weatherIcon: Int
     let temperature: Temperature
     

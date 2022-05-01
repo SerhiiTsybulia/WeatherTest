@@ -11,7 +11,7 @@ import CoreLocation
 
 protocol ApiServiceProtocol {
     func requestWeatherFor5Days(at location: CLLocationCoordinate2D, completionHandler: @escaping (Result<For5DaysWeatherDto, Error>) -> Void)
-    func requestHourlyWeather(at location: CLLocationCoordinate2D, completionHandler: @escaping (Result<Instruction, Error>) -> Void)
+    func requestHourlyWeather(at location: CLLocationCoordinate2D, completionHandler: @escaping (Result<[HourlyWeatherDto], Error>) -> Void)
 }
 
 // MARK: - ApiService
@@ -84,7 +84,7 @@ final class ApiService {
     }
     // MARK: - HourlyWeather request
     
-    private func requestHourlyWeather(locationKey: String, completionHandler: @escaping (Result<Instruction, Error>) -> Void) {
+    private func requestHourlyWeather(locationKey: String, completionHandler: @escaping (Result<[HourlyWeatherDto], Error>) -> Void) {
         let url = "https://dataservice.accuweather.com/forecasts/v1/hourly/12hour/\(locationKey)?apikey=\(apiKey)&details=true&metric=true"
         URLSession.shared.dataTask(with: URL(string: url)!, completionHandler: { data, response, error in
             //Validation
@@ -93,7 +93,7 @@ final class ApiService {
                 return
             }
             do {
-                let hourlyWeatherDto = try JSONDecoder().decode(Instruction.self, from: data)
+                let hourlyWeatherDto = try JSONDecoder().decode([HourlyWeatherDto].self, from: data)
                 completionHandler(.success(hourlyWeatherDto))
             }
             catch {
@@ -145,7 +145,7 @@ extension ApiService: ApiServiceProtocol {
         })
     }
     
-    func requestHourlyWeather(at location: CLLocationCoordinate2D, completionHandler: @escaping (Result<Instruction, Error>) -> Void){
+    func requestHourlyWeather(at location: CLLocationCoordinate2D, completionHandler: @escaping (Result<[HourlyWeatherDto], Error>) -> Void){
         requestLocationKey(location: location, completionHandler: { result in
             switch result {
             case .failure(let error):

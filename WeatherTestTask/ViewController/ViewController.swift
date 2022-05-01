@@ -9,7 +9,7 @@
 import UIKit
 import CoreLocation
 
-class ViewController: UIViewController, CLLocationManagerDelegate {
+class ViewController: UIViewController {
     
     private lazy var apiService = ApiService.shared
     
@@ -35,9 +35,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         "cel 5"
     ]
     
-    let locationManger = CLLocationManager()
+    private let locationManger = CLLocationManager()
     
-    var currentLocation: CLLocation?
+    private var currentLocation: CLLocation?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -121,8 +121,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
 //        header?.updateWeather(with: model)
 //    }
 
-    private func updateWeather(with model: Instruction) {
-        header?.updateWeather(with: model)
+    private func updateWeather(with models: [HourlyWeatherDto]) {
+        header?.updateWeather(with: models)
     }
     
     private func updateWeather(with model: For5DaysWeatherDto) {
@@ -173,5 +173,16 @@ extension ViewController: UITableViewDelegate {
     }
     func tableView(_ tableView: UITableView, heightForRowAt: IndexPath) -> CGFloat{
         70
+    }
+}
+
+// MARK: - CLLocationManagerDelegate impl
+
+extension ViewController: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let newLocation = locations.first, currentLocation == nil {
+            currentLocation = newLocation
+            updateWeather(with: newLocation.coordinate)
+        }
     }
 }
