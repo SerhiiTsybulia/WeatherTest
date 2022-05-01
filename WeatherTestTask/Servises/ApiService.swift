@@ -18,7 +18,7 @@ protocol ApiServiceProtocol {
 // MARK: - ApiService
 
 final class ApiService {
-    static var shared: ApiServiceProtocol = ApiServiceMoc() //ApiService()
+    static var shared: ApiServiceProtocol = ApiService() //ApiServiceMoc()
     private let apiKey = "uv8oBUByFjYbAAdn4XDHstOht7Z00jVB"
     
     // MARK: - LocationKey request
@@ -80,6 +80,7 @@ final class ApiService {
             catch {
                 completionHandler(.failure(error))
             }
+            
         }).resume()
     }
     // MARK: - HourlyWeather request

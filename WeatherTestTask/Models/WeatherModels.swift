@@ -47,46 +47,55 @@ struct GeoPosition: Codable {
         case longitude = "Longitude"
     }
 }
-// MARK: - Daily weather model
 
-struct DailyWeatherDto: Codable {
-    let temperature: [TempType: Temperature]
-    let day: DayDto
+// MARK: - Weather for 5 days model
+
+struct For5DaysWeatherDto: Codable {
+    let instructions: [Instruction]
+}
+
+struct Instruction: Codable {
+    let dailyForecasts: [DailyForecast]
     
     enum CodingKeys: String, CodingKey {
-        case temperature = "Temperature"
-        case day = "Day"
+        case dailyForecasts = "DailyForecasts"
     }
 }
 
-enum TempType: String, Codable {
-    case Minimum
-    case Maximum
+struct DailyForecast: Codable {
+    let date: Date
+    let temperature: TemperatureDto
+    
+    enum CodinKeys: String, CodingKey {
+        case date = "Date"
+        case temperature = "Temperature"
+    }
+}
+struct Day: Codable {
+    let icon: Int
+    let wind: Wind
+    let evapotranspiration: Evapotranspiration
+    
+    enum CodingKeys: String, CodingKey {
+        case icon = "Icon"
+        case wind = "Wind"
+        case evapotranspiration = "Evapotranspiration"
+    }
 }
 
-struct Temperature: Codable {
+struct Evapotranspiration: Codable {
     let value: Double
-    let unit: String
-    let unitType: Int
+    let unit: Unit
     
     enum CodingKeys: String, CodingKey {
         case value = "Value"
         case unit = "Unit"
-        case unitType = "UnitType"
     }
 }
 
-struct DayDto: Codable{
-    let wind: WindDto
-    
-    enum CodingKeys: String, CodingKey {
-        case wind = "Wind"
-    }
-}
-
-struct WindDto: Codable{
-    let speed: SpeedDto
-    let direction: DirectionDto
+struct Wind: Codable {
+    let speed: Evapotranspiration
+    let direction: Direction
     
     enum CodingKeys: String, CodingKey {
         case speed = "Speed"
@@ -94,9 +103,43 @@ struct WindDto: Codable{
     }
 }
 
-struct SpeedDto: Codable{
+struct Direction: Codable {
+    let degrees: Int
+    let localized, english: String
+    
+    enum CodingKeys: String, CodingKey {
+        case degrees = "Degrees"
+        case localized = "Loacalized"
+        case english = "English"
+    }
+}
+
+struct TemperatureDto: Codable {
+    let minimum, maximum: Evapotranspiration
+    
+    enum CodingKeys: String, CodingKey {
+        case minimum = "Minimum"
+        case maximum = "Maximum"
+    }
+}
+
+// MARK: - Hourly weather model
+
+struct HourlyWeatherDto: Codable {
+    let dateTime: Date
+    let weatherIcon: Int
+    let temperature: Temperature
+    
+    enum CodingKeys: String, CodingKey {
+        case dateTime = "DateTime"
+        case weatherIcon = "WeatherIcon"
+        case temperature = "Temperature"
+    }
+}
+
+struct Temperature: Codable {
     let value: Double
-    let unit: String
+    let unit: Unit
     
     enum CodingKeys: String, CodingKey {
         case value = "Value"
@@ -104,49 +147,30 @@ struct SpeedDto: Codable{
     }
 }
 
-struct DirectionDto: Codable{
-    let localized: String
-    
-    enum CodingKeys: String, CodingKey {
-        case localized = "Localized"
-    }
+enum Unit: String, Codable {
+    case c = "C"
+    case cm = "cm"
+    case km = "km"
+    case kmH = "km/h"
+    case m = "m"
+    case mm = "mm"
+    case wM = "W/m²"
 }
 
-// MARK: - Weather for 5 days model
 
-struct For5DaysWeatherDto: Codable{
-    let date: String
-    let temperature: [TempType: Temperature]
-    
-    enum CodingKeys: String, CodingKey {
-        case date = "Date"
-        case temperature = "Temperature"
-    }
-}
 
-// MARK: - Hourly weather model
-
-struct HourlyWeatherDto: Codable{
-    let dateTime: String
-    let temperature: Temperature
-    
-    enum CodingKeys: String, CodingKey {
-        case dateTime = "DateTime"
-        case temperature = "Temperature"
-    }
-}
-
-class HourlyWeather{
-    var hourlyWeather = [HourlyWeatherDto]()
-    init(){
-        setup()
-    }
-    func setup(){
-        let h1 = HourlyWeatherDto(dateTime: "11:00", temperature: Temperature(value: 11.4, unit: "C", unitType: 17))
-        let h2 = HourlyWeatherDto(dateTime: "12:00", temperature: Temperature(value: 12.4, unit: "C", unitType: 17))
-        let h3 = HourlyWeatherDto(dateTime: "13:00", temperature: Temperature(value: 13.4, unit: "C", unitType: 17))
-        let h4 = HourlyWeatherDto(dateTime: "14:00", temperature: Temperature(value: 14.4, unit: "C", unitType: 17))
-        let h5 = HourlyWeatherDto(dateTime: "15:00", temperature: Temperature(value: 15.4, unit: "C", unitType: 17))
-        self.hourlyWeather = [h1, h2, h3, h4, h5]
-    }
-}
+// MARK: - Hourly weather FOR TESTING
+//class HourlyWeather {
+//    var hourlyWeather = [HourlyWeatherDto]()
+//    init(){
+//        setup()
+//    }
+//    func setup(){
+//        let h1 = HourlyWeatherDto(dateTime: "11:00", temperature: Temperature(value: 11.4, unit: "C", unitType: 17))
+//        let h2 = HourlyWeatherDto(dateTime: "12:00", temperature: Temperature(value: 12.4, unit: "C", unitType: 17))
+//        let h3 = HourlyWeatherDto(dateTime: "13:00", temperature: Temperature(value: 13.4, unit: "C", unitType: 17))
+//        let h4 = HourlyWeatherDto(dateTime: "14:00", temperature: Temperature(value: 14.4, unit: "C", unitType: 17))
+//        let h5 = HourlyWeatherDto(dateTime: "15:00", temperature: Temperature(value: 15.4, unit: "C", unitType: 17))
+//        self.hourlyWeather = [h1, h2, h3, h4, h5]
+//    }
+//}

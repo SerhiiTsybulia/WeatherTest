@@ -8,7 +8,14 @@
 
 import UIKit
 
-@IBDesignable
+protocol HeaderProtocol {
+    var positionClickHandler: (() -> Void)? { get set }
+    var searchClickHandler: (() -> Void)? { get set }
+    
+    func updateWeather(with model: DailyWeatherDto)
+    func updateWeather(with model: HourlyWeatherDto)
+}
+
 class Header: UIView {
     
     static func create() -> Header? {
@@ -18,7 +25,10 @@ class Header: UIView {
     var positionClickHandler: (() -> Void)?
     var searchClickHandler: (() -> Void)?
     
-    var modelsForCollection: HourlyWeather = HourlyWeather()
+    var modelsForCollection: HourlyWeather = HourlyWeather() //FOR TESTING
+    
+    private var dailyWeatherModel: DailyWeatherDto?
+    private var hourlyWeatherModel: HourlyWeatherDto?
     
     @IBOutlet var contentView: UIView!
     @IBOutlet weak var hourlyCollectionView: UICollectionView!
@@ -29,15 +39,7 @@ class Header: UIView {
         super.awakeFromNib()
         commonInit()
     }
-    
-//    override init(frame: CGRect) {
-//        super.init(frame: frame)
-//    }
-//
-//    required init?(coder aDecoder: NSCoder) {
-//        super.init(coder: aDecoder)
-//    }
-    
+
     private func commonInit(){
         initCollectionView()
     }
@@ -48,6 +50,22 @@ class Header: UIView {
         hourlyCollectionView.dataSource = self
     }
 }
+
+// MARK: - HeaderProtocol impl
+
+extension Header: HeaderProtocol {
+    func updateWeather(with model: DailyWeatherDto) {
+        dailyWeatherModel = model
+        // TODO: update UI
+    }
+
+    func updateWeather(with model: HourlyWeatherDto) {
+        hourlyWeatherModel = model
+        hourlyCollectionView.reloadData()
+    }
+}
+
+// MARK: - UICollectionViewDataSource impl
 
 extension Header: UICollectionViewDataSource, UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -63,12 +81,7 @@ extension Header: UICollectionViewDataSource, UICollectionViewDelegate,UICollect
 
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 5, height: 110)
-    }
-    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         0
     }
-    
 }

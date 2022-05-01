@@ -86,8 +86,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     private func locationPicked(location: CLLocationCoordinate2D) {
         updateWeather(with: location)
-        let mainViewController = ViewController()
-        navigationController?.pushViewController(mainViewController, animated: true)
     }
     
     private func updateWeather(with location: CLLocationCoordinate2D) {
@@ -120,18 +118,17 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     private func updateWeather(with model: DailyWeatherDto) {
-        // TODO: update UI
-        preconditionFailure("!!! UPDATE UI DailyWeatherDto !!!")
+        header?.updateWeather(with: model)
     }
 
     private func updateWeather(with model: HourlyWeatherDto) {
-        // TODO: update UI
-        preconditionFailure("!!! UPDATE UI HourlyWeatherDto !!!")
+        header?.updateWeather(with: model)
     }
     
     private func updateWeather(with model: For5DaysWeatherDto) {
-        // TODO: update UI
-        preconditionFailure("!!! UPDATE UI For5DaysWeatherDto !!!")
+        DispatchQueue.main.async {
+            self.table.reloadData()
+        }
     }
     
     // MARK: - Location impl
