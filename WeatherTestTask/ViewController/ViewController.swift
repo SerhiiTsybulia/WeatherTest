@@ -26,17 +26,17 @@ class ViewController: UIViewController {
         return header
     }()
     
-    var dummyModels = [
-        "cel 0",
-        "cel 1",
-        "cel 2",
-        "cel 3",
-        "cel 4",
-        "cel 5"
-    ]
-    
+//    var dummyModels = [
+//        "cel 0",
+//        "cel 1",
+//        "cel 2",
+//        "cel 3",
+//        "cel 4",
+//        "cel 5"
+//    ]
+    private var dailyWeatherList: [For5DaysWeatherDto]?
+    private var dailyWeatherModel: [DailyForecast]?
     private let locationManger = CLLocationManager()
-    
     private var currentLocation: CLLocation?
     
     override func viewDidLoad() {
@@ -90,15 +90,6 @@ class ViewController: UIViewController {
     
     private func updateWeather(with location: CLLocationCoordinate2D) {
         
-//        apiService.requestDailyWeather(at: location, completionHandler: { [weak self] response in
-//            switch response {
-//            case .failure(let error):
-//                print("Get daily weather failure: \(error)")
-//            case .success(let dailyWeather):
-//                self?.updateWeather(with: dailyWeather)
-//            }
-//        })
-//
         apiService.requestHourlyWeather(at: location, completionHandler: { [weak self] response in
             switch response {
             case .failure(let error):
@@ -107,6 +98,7 @@ class ViewController: UIViewController {
                 self?.updateWeather(with: hourlyWeather)
             }
         })
+        
         apiService.requestWeatherFor5Days(at: location, completionHandler: { [weak self] response in
             switch response {
             case .failure(let error):
@@ -117,16 +109,11 @@ class ViewController: UIViewController {
         })
     }
     
-//    private func updateWeather(with model: For5DaysWeatherDto) {
-//        header?.updateWeather(with: model)
-//    }
-
     private func updateWeather(with models: [HourlyWeatherDto]) {
         header?.updateWeather(with: models)
     }
     
     private func updateWeather(with model: For5DaysWeatherDto) {
-        
         DispatchQueue.main.async {
             self.table.reloadData()
         }
@@ -145,16 +132,19 @@ class ViewController: UIViewController {
 extension ViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        dummyModels.count
+        return dailyWeatherList?.count ?? 0
     }
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        //        let curModel = dummyModels[indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: WeatherTableViewCell.identifire, for: indexPath)
-        if cell.isSelected {
-            
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {        
+        let cell = tableView.dequeueReusableCell(withIdentifier: WeatherTableViewCell.identifire, for: indexPath) as? WeatherTableViewCell
+        (dailyWeatherModel?[indexPath.item]).map {
+            cell?.setupCell5Days(model: $0)}
+        precondition(cell != nil, "cell must be not nil")
+
+        if ((cell?.isSelected) != nil) {
+           // UPDATE HEADER PART
         }
-        //            cell.textLabel?.text = curModel
-        return cell
+        return cell ?? .init(frame: .zero)
     }
 }
 

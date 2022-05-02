@@ -245,7 +245,12 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="contentView" destination="Zy9-bZ-uEg" id="zr5-EL-gST"/>
+                <outlet property="dateLable" destination="bg3-he-4DH" id="NAq-Ik-o2i"/>
                 <outlet property="hourlyCollectionView" destination="5V0-th-D5F" id="0hu-UR-Wtm"/>
+                <outlet property="locationLable" destination="Ahb-0N-Wbs" id="lek-qs-tYX"/>
+                <outlet property="speedOfWind" destination="jce-Fq-0kJ" id="II6-cz-WQI"/>
+                <outlet property="temperatureLable" destination="XDH-TV-E8J" id="ct6-rc-LIt"/>
+                <outlet property="windOrientation" destination="fiz-Sg-xsy" id="4yF-kl-zNU"/>
             </connections>
             <point key="canvasLocation" x="-368.84057971014494" y="-128.90625"/>
         </view>

@@ -35,6 +35,11 @@ class Header: UIView {
     @IBOutlet weak var hourlyCollectionView: UICollectionView!
     @IBAction func locationClicked() { positionClickHandler?() }
     @IBAction func searchClicked() { searchClickHandler?() }
+    @IBOutlet weak var locationLable: UILabel!
+    @IBOutlet weak var dateLable: UILabel!
+    @IBOutlet weak var temperatureLable: UILabel!
+    @IBOutlet weak var speedOfWind: UILabel!
+    @IBOutlet weak var windOrientation: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -21,6 +21,7 @@ class HourlyCollectionViewCell: UICollectionViewCell {
         let formatter = DateFormatter()
         formatter.dateStyle = .none
         formatter.timeStyle = .short
+        formatter.dateFormat = "HH:mm"
         return formatter
     }()
     
