@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class LocationViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
+class LocationViewController: UIViewController, CLLocationManagerDelegate {
     
     var locationPicked: ((CLLocationCoordinate2D) -> Void)?
     
@@ -45,8 +45,8 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate, MKMap
         navigationController?.navigationBar.isHidden = false
     }
     
-    internal func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        if let location = locations.first{
+   func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let location = locations.first {
             manager.stopUpdatingLocation()
             render(location)
         }

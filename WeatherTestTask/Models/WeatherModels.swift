@@ -60,14 +60,14 @@ struct For5DaysWeatherDto: Codable {
 }
 
 struct DailyForecastDto: Codable {
-    let epochDate: Double?
-    var date: Date? {
-        epochDate.map { Date(timeIntervalSince1970: $0) }
+    let date: String
+    var dateConv: Date? {
+        try? Date(date, strategy: .iso8601)
     }
     let temperature: TemperatureDto?
     
-    enum CodinKeys: String, CodingKey {
-        case epochDate = "EpochDate"
+    enum CodingKeys: String, CodingKey {
+        case date = "Date"
         case temperature = "Temperature"
     }
 }

@@ -26,8 +26,7 @@ class ViewController: UIViewController {
         return header
     }()
     
-    private var dailyWeatherList: For5DaysWeatherDto?
-    private var dailyWeatherModel = [DailyForecastDto]()
+    private var for5DaysWeatherDto: For5DaysWeatherDto?
     private let locationManger = CLLocationManager()
     private var currentLocation: CLLocation?
     
@@ -106,6 +105,7 @@ class ViewController: UIViewController {
     }
     
     private func updateWeather(with models: For5DaysWeatherDto) {
+        for5DaysWeatherDto = models
         DispatchQueue.main.async {
             self.table.reloadData()
         }
@@ -124,20 +124,13 @@ class ViewController: UIViewController {
 extension ViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        return 5
+        return for5DaysWeatherDto?.dailyForecasts.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {        
         let cell = tableView.dequeueReusableCell(withIdentifier: WeatherTableViewCell.identifire, for: indexPath) as? WeatherTableViewCell
-//        cell?.setupCell5Days(with: dailyWeatherModel[indexPath.item])
-//        (dailyWeatherModel[indexPath.item]).map {
-//            cell?.setupCell5Days(model: DailyForecastDto)}
+        (for5DaysWeatherDto?.dailyForecasts[indexPath.item]).map { cell?.setupCell5Days(model: $0) }
         precondition(cell != nil, "cell must be not nil")
-
-        if ((cell?.isSelected) != nil) {
-           // UPDATE HEADER PART
-        }
         return cell ?? .init(frame: .zero)
     }
 }
@@ -153,10 +146,19 @@ extension ViewController: UITableViewDelegate {
         header
     }
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        400
+        450
     }
     func tableView(_ tableView: UITableView, heightForRowAt: IndexPath) -> CGFloat{
-        70
+        80
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let selectyedModel = for5DaysWeatherDto?.dailyForecasts[indexPath.row] else {
+            tableView.deselectRow(at: indexPath, animated: true)
+            return
+        }
+        
+        print("TODO: implement loading hourly weather for: \(selectyedModel.date)")
     }
 }
 

@@ -18,7 +18,7 @@ protocol ApiServiceProtocol {
 
 final class ApiService {
     static var shared: ApiServiceProtocol = ApiService() //ApiServiceMoc()
-    private let apiKey = "uv8oBUByFjYbAAdn4XDHstOht7Z00jVB"
+    private let apiKey = "Qp3VnGmQ4XbBTP9le5sa7F9pwCBbHYmS"
     
     // MARK: - LocationKey request
     

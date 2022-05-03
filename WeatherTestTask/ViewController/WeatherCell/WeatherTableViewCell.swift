@@ -20,25 +20,33 @@ class WeatherTableViewCell: UITableViewCell {
     
     private lazy var formatter: DateFormatter =  {
         let formatter = DateFormatter()
-        formatter.dateStyle = .medium
+        formatter.dateStyle = .short
         formatter.timeZone = .current
+        formatter.dateFormat = "E"
         return formatter
     }()
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         
-        if selected {
-            dayLabel.textColor = UIColor(red: 74/255.0, green: 144/255.0, blue: 226/255.0, alpha: 1.0)
-            temperatureLabel.textColor = UIColor(red: 74/255.0, green: 144/255.0, blue: 226/255.0, alpha: 1.0)
-            weatherImg.tintColor = UIColor(red: 74/255.0, green: 144/255.0, blue: 226/255.0, alpha: 1.0)
-        } else {
-            dayLabel.textColor = UIColor(red: 25/255.0, green: 26/255.0, blue: 25/255.0, alpha: 1.0)
-            temperatureLabel.textColor = UIColor(red: 25/255.0, green: 26/255.0, blue: 25/255.0, alpha: 1.0)
-            weatherImg.tintColor = UIColor(red: 25/255.0, green: 26/255.0, blue: 25/255.0, alpha: 1.0)
+        let updateSelection: () -> Void = {
+            if selected {
+                self.dayLabel.textColor = UIColor(red: 74/255.0, green: 144/255.0, blue: 226/255.0, alpha: 1.0)
+                self.temperatureLabel.textColor = UIColor(red: 74/255.0, green: 144/255.0, blue: 226/255.0, alpha: 1.0)
+                self.weatherImg.tintColor = UIColor(red: 74/255.0, green: 144/255.0, blue: 226/255.0, alpha: 1.0)
+            } else {
+                self.dayLabel.textColor = UIColor(red: 25/255.0, green: 26/255.0, blue: 25/255.0, alpha: 1.0)
+                self.temperatureLabel.textColor = UIColor(red: 25/255.0, green: 26/255.0, blue: 25/255.0, alpha: 1.0)
+                self.weatherImg.tintColor = UIColor(red: 25/255.0, green: 26/255.0, blue: 25/255.0, alpha: 1.0)
+            }
         }
         
-        
+        if animated {
+            UIView.animate(withDuration: CATransaction.animationDuration(),
+                           animations: updateSelection)
+        } else {
+            UIView.performWithoutAnimation(updateSelection)
+        }
     }
     static let identifire = "WeatherTableViewCell"
     
@@ -46,18 +54,19 @@ class WeatherTableViewCell: UITableViewCell {
         return UINib(nibName: "WeatherTableViewCell", bundle: nil)
     }
     
-    func setupCell5Days (with model: DailyForecastDto) {
-        if let date = model.date {
-            let localDate = formatter.string(from: date)
-            dayLabel.text = localDate
+    func setupCell5Days (model: DailyForecastDto) {
+        if let date = model.dateConv {
+            let str = formatter.string(from: date)
+            dayLabel.text = str.uppercased()
         } else {
-            dayLabel.text = "wrong date"
+            dayLabel.text = "Date parsing failed"
         }
         
-        let max = model.temperature?.maximum.value
-        let min = model.temperature?.minimum.value
+        let max = model.temperature?.maximum.value ?? 0
+        let min = model.temperature?.minimum.value ?? 0
         
-        temperatureLabel.text = "\(max)°/\(min)°"
+        temperatureLabel.text = "\(Int(max))° / \(Int(min))°"
+        
     }
+    
 }
-

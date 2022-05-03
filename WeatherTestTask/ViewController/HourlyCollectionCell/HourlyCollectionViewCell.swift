@@ -36,7 +36,8 @@ class HourlyCollectionViewCell: UICollectionViewCell {
         } else {
             weatherTime.text = "Date parsing failed"
         }
-        weatherTemperature.text = "\(model.temperature.value)°"
+        
+        weatherTemperature.text = "\(Int(model.temperature.value))°"
 //        self.weatherPicture.image = UIImage(named: "cloud.sun.rain")
     }
 }
