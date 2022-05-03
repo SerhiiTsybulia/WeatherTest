@@ -51,16 +51,20 @@ struct GeoPosition: Codable {
 // MARK: - Weather for 5 days model
 
 struct For5DaysWeatherDto: Codable {
-    let dailyForecasts: [DailyForecast]
+
+    let dailyForecasts: [DailyForecastDto]
     
     enum CodingKeys: String, CodingKey {
         case dailyForecasts = "DailyForecasts"
     }
 }
 
-struct DailyForecast: Codable {
-    let epochDate: Int?
-    let temperature: TemperatureDto
+struct DailyForecastDto: Codable {
+    let epochDate: Double?
+    var date: Date? {
+        epochDate.map { Date(timeIntervalSince1970: $0) }
+    }
+    let temperature: TemperatureDto?
     
     enum CodinKeys: String, CodingKey {
         case epochDate = "EpochDate"

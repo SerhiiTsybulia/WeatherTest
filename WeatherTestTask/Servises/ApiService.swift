@@ -56,11 +56,9 @@ final class ApiService {
             do {
                 let fiveDaysWeatherDto = try JSONDecoder().decode(For5DaysWeatherDto.self, from: data)
                 completionHandler(.success(fiveDaysWeatherDto))
-            }
-            catch {
+            } catch {
                 completionHandler(.failure(error))
             }
-            
         }).resume()
     }
     // MARK: - HourlyWeather request

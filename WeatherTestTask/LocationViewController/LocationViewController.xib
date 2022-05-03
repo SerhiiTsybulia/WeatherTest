@@ -21,33 +21,62 @@
             <subviews>
                 <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Coj-78-6Bd">
                     <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                </mapView>
-                <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aOb-88-hdZ">
-                    <rect key="frame" x="152" y="831" width="110.5" height="31"/>
-                    <color key="backgroundColor" systemColor="secondarySystemGroupedBackgroundColor"/>
-                    <buttonConfiguration key="configuration" style="plain" title="Pick Location" cornerStyle="large" titleAlignment="center"/>
+                    <gestureRecognizers/>
                     <connections>
-                        <action selector="pickLocation" destination="-1" eventType="touchUpInside" id="Dhk-9Y-3uo"/>
+                        <outletCollection property="gestureRecognizers" destination="H8a-vl-1fq" appends="YES" id="Oiz-xs-ijS"/>
                     </connections>
-                </button>
+                </mapView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bNB-L5-aXT" userLabel="ButtonView">
+                    <rect key="frame" x="142" y="812" width="130" height="50"/>
+                    <subviews>
+                        <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aOb-88-hdZ">
+                            <rect key="frame" x="-12" y="-7" width="154" height="64"/>
+                            <buttonConfiguration key="configuration" style="plain" image="Pick location button" imagePadding="17" cornerStyle="large"/>
+                            <connections>
+                                <action selector="pickLocation" destination="-1" eventType="touchUpInside" id="Dhk-9Y-3uo"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pick Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ru4-WK-4Af">
+                            <rect key="frame" x="24.5" y="17" width="81" height="16"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="aOb-88-hdZ" firstAttribute="centerY" secondItem="bNB-L5-aXT" secondAttribute="centerY" id="4dj-dk-0bs"/>
+                        <constraint firstAttribute="height" constant="50" id="EZi-0H-jsj"/>
+                        <constraint firstItem="ru4-WK-4Af" firstAttribute="centerY" secondItem="bNB-L5-aXT" secondAttribute="centerY" id="FE9-Ac-6wQ"/>
+                        <constraint firstItem="ru4-WK-4Af" firstAttribute="centerX" secondItem="bNB-L5-aXT" secondAttribute="centerX" id="RNL-wo-7Qc"/>
+                        <constraint firstItem="aOb-88-hdZ" firstAttribute="centerX" secondItem="bNB-L5-aXT" secondAttribute="centerX" id="cLA-EN-VNN"/>
+                        <constraint firstItem="aOb-88-hdZ" firstAttribute="centerY" secondItem="bNB-L5-aXT" secondAttribute="centerY" id="h7m-ah-mnV"/>
+                        <constraint firstItem="aOb-88-hdZ" firstAttribute="centerX" secondItem="bNB-L5-aXT" secondAttribute="centerX" id="hXz-p7-gA6"/>
+                        <constraint firstAttribute="width" constant="130" id="qDs-ms-t9c"/>
+                    </constraints>
+                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Coj-78-6Bd" secondAttribute="trailing" id="8YP-qm-2m0"/>
                 <constraint firstItem="Coj-78-6Bd" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="NVW-4o-cqo"/>
+                <constraint firstItem="bNB-L5-aXT" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="OZd-4m-kix"/>
                 <constraint firstAttribute="bottom" secondItem="Coj-78-6Bd" secondAttribute="bottom" id="PHN-IV-Ub2"/>
-                <constraint firstItem="aOb-88-hdZ" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="SLj-fL-7N6"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="aOb-88-hdZ" secondAttribute="bottom" id="l3C-wb-KM9"/>
+                <constraint firstItem="bNB-L5-aXT" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="SYb-P3-BPA"/>
+                <constraint firstItem="bNB-L5-aXT" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="142" id="hgQ-Ie-a32"/>
                 <constraint firstItem="Coj-78-6Bd" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="o72-IH-VuG"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="bNB-L5-aXT" secondAttribute="trailing" constant="142" id="vOu-kE-0ID"/>
             </constraints>
-            <point key="canvasLocation" x="139" y="50"/>
+            <point key="canvasLocation" x="137.68115942028987" y="49.553571428571423"/>
         </view>
+        <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="H8a-vl-1fq">
+            <connections>
+                <action selector="longPress:" destination="-1" id="tVC-VS-HHT"/>
+            </connections>
+        </pongPressGestureRecognizer>
     </objects>
     <resources>
-        <systemColor name="secondarySystemGroupedBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
+        <image name="Pick location button" width="130" height="50"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

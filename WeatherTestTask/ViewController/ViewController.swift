@@ -26,16 +26,8 @@ class ViewController: UIViewController {
         return header
     }()
     
-//    var dummyModels = [
-//        "cel 0",
-//        "cel 1",
-//        "cel 2",
-//        "cel 3",
-//        "cel 4",
-//        "cel 5"
-//    ]
-    private var dailyWeatherList: [For5DaysWeatherDto]?
-    private var dailyWeatherModel: [DailyForecast]?
+    private var dailyWeatherList: For5DaysWeatherDto?
+    private var dailyWeatherModel = [DailyForecastDto]()
     private let locationManger = CLLocationManager()
     private var currentLocation: CLLocation?
     
@@ -113,7 +105,7 @@ class ViewController: UIViewController {
         header?.updateWeather(with: models)
     }
     
-    private func updateWeather(with model: For5DaysWeatherDto) {
+    private func updateWeather(with models: For5DaysWeatherDto) {
         DispatchQueue.main.async {
             self.table.reloadData()
         }
@@ -132,13 +124,15 @@ class ViewController: UIViewController {
 extension ViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dailyWeatherList?.count ?? 0
+        
+        return 5
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {        
         let cell = tableView.dequeueReusableCell(withIdentifier: WeatherTableViewCell.identifire, for: indexPath) as? WeatherTableViewCell
-        (dailyWeatherModel?[indexPath.item]).map {
-            cell?.setupCell5Days(model: $0)}
+//        cell?.setupCell5Days(with: dailyWeatherModel[indexPath.item])
+//        (dailyWeatherModel[indexPath.item]).map {
+//            cell?.setupCell5Days(model: DailyForecastDto)}
         precondition(cell != nil, "cell must be not nil")
 
         if ((cell?.isSelected) != nil) {

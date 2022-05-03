@@ -28,11 +28,11 @@ class WeatherTableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         
-        if selected{
+        if selected {
             dayLabel.textColor = UIColor(red: 74/255.0, green: 144/255.0, blue: 226/255.0, alpha: 1.0)
             temperatureLabel.textColor = UIColor(red: 74/255.0, green: 144/255.0, blue: 226/255.0, alpha: 1.0)
             weatherImg.tintColor = UIColor(red: 74/255.0, green: 144/255.0, blue: 226/255.0, alpha: 1.0)
-        }else{
+        } else {
             dayLabel.textColor = UIColor(red: 25/255.0, green: 26/255.0, blue: 25/255.0, alpha: 1.0)
             temperatureLabel.textColor = UIColor(red: 25/255.0, green: 26/255.0, blue: 25/255.0, alpha: 1.0)
             weatherImg.tintColor = UIColor(red: 25/255.0, green: 26/255.0, blue: 25/255.0, alpha: 1.0)
@@ -46,19 +46,18 @@ class WeatherTableViewCell: UITableViewCell {
         return UINib(nibName: "WeatherTableViewCell", bundle: nil)
     }
     
-    func setupCell5Days (model: DailyForecast) {
-        if let timeResult = model.epochDate{
-            let date = Date(timeIntervalSince1970: TimeInterval(timeResult))
+    func setupCell5Days (with model: DailyForecastDto) {
+        if let date = model.date {
             let localDate = formatter.string(from: date)
             dayLabel.text = localDate
         } else {
-            dayLabel.text = "Decodable error"
+            dayLabel.text = "wrong date"
         }
         
-        let max = model.temperature.maximum
-        let min = model.temperature.minimum
+        let max = model.temperature?.maximum.value
+        let min = model.temperature?.minimum.value
         
-        self.temperatureLabel.text = "\(max)°/\(min)°"
+        temperatureLabel.text = "\(max)°/\(min)°"
     }
 }
 
