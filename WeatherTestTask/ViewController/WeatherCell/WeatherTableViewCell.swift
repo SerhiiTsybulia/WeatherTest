@@ -67,6 +67,52 @@ class WeatherTableViewCell: UITableViewCell {
         
         temperatureLabel.text = "\(Int(max))° / \(Int(min))°"
         
+        let iconNumber = model.day.icon
+        switch iconNumber {
+        case 1 :
+            weatherImg.image = UIImage(systemName: "sun.max")
+        case 2 :
+            weatherImg.image = UIImage(systemName: "sun.min")
+        case 3 :
+            weatherImg.image = UIImage(systemName: "cloud.sun")
+        case 4 :
+            weatherImg.image = UIImage(systemName: "cloud.sun")
+        case 5 :
+            weatherImg.image = UIImage(systemName: "sun.haze")
+        case 6 :
+            weatherImg.image = UIImage(systemName: "cloud.sun")
+        case 7 :
+            weatherImg.image = UIImage(systemName: "cloud")
+        case 8 :
+            weatherImg.image = UIImage(systemName: "cloud.fill")
+        case 11 :
+            weatherImg.image = UIImage(systemName: "cloud.fog")
+        case 12 :
+            weatherImg.image = UIImage(systemName: "cloud.hail")
+        case 13 :
+            weatherImg.image = UIImage(systemName: "cloud.sun.rain")
+        case 14 :
+            weatherImg.image = UIImage(systemName: "cloud.sun.rain")
+        case 15 :
+            weatherImg.image = UIImage(systemName: "cloud.bolt.rain")
+        case 16 :
+            weatherImg.image = UIImage(systemName: "cloud.sun.bolt")
+        case 17 :
+            weatherImg.image = UIImage(systemName: "cloud.sun.bolt")
+        case 18 :
+            weatherImg.image = UIImage(systemName: "cloud.havyrain")
+        case 19 :
+            weatherImg.image = UIImage(systemName: "cloud")
+        case 20 :
+            weatherImg.image = UIImage(systemName: "cloud.sun")
+        case 21 :
+            weatherImg.image = UIImage(systemName: "cloud.sun")
+        case 22 :
+            weatherImg.image = UIImage(systemName: "cloud.snow")
+        case 23 :
+            weatherImg.image = UIImage(systemName: "cloud.snow")
+        default :
+            print("Error")
+        }
     }
-    
 }

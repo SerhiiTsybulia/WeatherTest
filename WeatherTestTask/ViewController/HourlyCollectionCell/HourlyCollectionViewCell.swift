@@ -38,6 +38,53 @@ class HourlyCollectionViewCell: UICollectionViewCell {
         }
         
         weatherTemperature.text = "\(Int(model.temperature.value))°"
-//        self.weatherPicture.image = UIImage(named: "cloud.sun.rain")
+        
+        let iconNumber = model.weatherIcon
+        switch iconNumber {
+        case 1 :
+            weatherPicture.image = UIImage(systemName: "sun.max")
+        case 2 :
+            weatherPicture.image = UIImage(systemName: "sun.min")
+        case 3 :
+            weatherPicture.image = UIImage(systemName: "cloud.sun")
+        case 4 :
+            weatherPicture.image = UIImage(systemName: "cloud.sun")
+        case 5 :
+            weatherPicture.image = UIImage(systemName: "sun.haze")
+        case 6 :
+            weatherPicture.image = UIImage(systemName: "cloud.sun")
+        case 7 :
+            weatherPicture.image = UIImage(systemName: "cloud")
+        case 8 :
+            weatherPicture.image = UIImage(systemName: "cloud.fill")
+        case 11 :
+            weatherPicture.image = UIImage(systemName: "cloud.fog")
+        case 12 :
+            weatherPicture.image = UIImage(systemName: "cloud.hail")
+        case 13 :
+            weatherPicture.image = UIImage(systemName: "cloud.sun.rain")
+        case 14 :
+            weatherPicture.image = UIImage(systemName: "cloud.sun.rain")
+        case 15 :
+            weatherPicture.image = UIImage(systemName: "cloud.bolt.rain")
+        case 16 :
+            weatherPicture.image = UIImage(systemName: "cloud.sun.bolt")
+        case 17 :
+            weatherPicture.image = UIImage(systemName: "cloud.sun.bolt")
+        case 18 :
+            weatherPicture.image = UIImage(systemName: "cloud.havyrain")
+        case 19 :
+            weatherPicture.image = UIImage(systemName: "cloud")
+        case 20 :
+            weatherPicture.image = UIImage(systemName: "cloud.sun")
+        case 21 :
+            weatherPicture.image = UIImage(systemName: "cloud.sun")
+        case 22 :
+            weatherPicture.image = UIImage(systemName: "cloud.snow")
+        case 23 :
+            weatherPicture.image = UIImage(systemName: "cloud.snow")
+        default :
+            print("Error")
+        }
     }
 }

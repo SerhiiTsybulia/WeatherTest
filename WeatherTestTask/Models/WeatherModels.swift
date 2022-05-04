@@ -65,10 +65,12 @@ struct DailyForecastDto: Codable {
         try? Date(date, strategy: .iso8601)
     }
     let temperature: TemperatureDto?
+    let day: Day
     
     enum CodingKeys: String, CodingKey {
         case date = "Date"
         case temperature = "Temperature"
+        case day = "Day"
     }
 }
 struct Day: Codable {
@@ -109,7 +111,7 @@ struct Direction: Codable {
     
     enum CodingKeys: String, CodingKey {
         case degrees = "Degrees"
-        case localized = "Loacalized"
+        case localized = "Localized"
         case english = "English"
     }
 }

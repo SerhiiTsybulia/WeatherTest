@@ -25,14 +25,12 @@ class Header: UIView {
     var positionClickHandler: (() -> Void)?
     var searchClickHandler: (() -> Void)?
     
-//    var modelsForCollection: HourlyWeatherDto = HourlyWeather() //FOR TESTING
-    
     private var dailyWeatherModel: For5DaysWeatherDto?
     private var hourlyWeatherModels: [HourlyWeatherDto]?
     
-    
     @IBOutlet var contentView: UIView!
     @IBOutlet weak var hourlyCollectionView: UICollectionView!
+    
     @IBAction func locationClicked() { positionClickHandler?() }
     @IBAction func searchClicked() { searchClickHandler?() }
     @IBOutlet weak var locationLable: UILabel!
@@ -45,14 +43,13 @@ class Header: UIView {
         super.awakeFromNib()
         commonInit()
     }
-
+    
     private func commonInit(){
         initCollectionView()
     }
     
     private func initCollectionView() {
-        hourlyCollectionView.register( HourlyCollectionViewCell.nib,
-                                       forCellWithReuseIdentifier: HourlyCollectionViewCell.identifier)
+        hourlyCollectionView.register( HourlyCollectionViewCell.nib, forCellWithReuseIdentifier: HourlyCollectionViewCell.identifier)
         hourlyCollectionView.dataSource = self
     }
 }
@@ -62,9 +59,8 @@ class Header: UIView {
 extension Header: HeaderProtocol {
     func updateWeather(with model: For5DaysWeatherDto) {
         dailyWeatherModel = model
-        // TODO: update UI
     }
-
+    
     func updateWeather(with models: [HourlyWeatherDto]) {
         hourlyWeatherModels = models
         DispatchQueue.main.async {
