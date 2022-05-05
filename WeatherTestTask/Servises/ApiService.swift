@@ -10,7 +10,7 @@ import Foundation
 import CoreLocation
 
 protocol ApiServiceProtocol {
-    func requestWeatherFor5Days(at location: CLLocationCoordinate2D, completionHandler: @escaping (Result<For5DaysWeatherDto, Error>) -> Void)
+    func requestWeatherFor5Days(at location: CLLocationCoordinate2D, completionHandler: @escaping (Result<(For5DaysWeatherDto, LocationResponse), Error>) -> Void)
     func requestHourlyWeather(at location: CLLocationCoordinate2D, completionHandler: @escaping (Result<[HourlyWeatherDto], Error>) -> Void)
 }
 
@@ -22,7 +22,7 @@ final class ApiService {
     
     // MARK: - LocationKey request
     
-    private func requestLocationKey(location: CLLocationCoordinate2D, completionHandler: @escaping (Result<String, Error>) -> Void) {
+    private func requestLocationKey(location: CLLocationCoordinate2D, completionHandler: @escaping (Result<LocationResponse, Error>) -> Void) {
         let lon = location.longitude
         let lat = location.latitude
         let url = "https://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=\(apiKey)&q=\(lat)%2C%20\(lon)"
@@ -33,8 +33,7 @@ final class ApiService {
                 return
             }
             do {
-                let json = try JSONDecoder().decode(LocationResponse.self, from: data)
-                completionHandler(.success(json.key))
+                completionHandler(.success(try JSONDecoder().decode(LocationResponse.self, from: data)))
             }
             catch {
                 completionHandler(.failure(error))
@@ -88,18 +87,18 @@ final class ApiService {
 
 extension ApiService: ApiServiceProtocol {
     
-    func requestWeatherFor5Days(at location: CLLocationCoordinate2D, completionHandler: @escaping (Result<For5DaysWeatherDto, Error>) -> Void) {
-        requestLocationKey(location: location, completionHandler: { result in
-            switch result {
+    func requestWeatherFor5Days(at location: CLLocationCoordinate2D, completionHandler: @escaping (Result<(For5DaysWeatherDto, LocationResponse), Error>) -> Void) {
+        requestLocationKey(location: location, completionHandler: { locationResult in
+            switch locationResult {
             case .failure(let error):
                 completionHandler(.failure(error))
-            case .success(let key):
-                self.requestWeatherFor5Days(locationKey: key, completionHandler: { result in
+            case .success(let locationResultValue):
+                self.requestWeatherFor5Days(locationKey: locationResultValue.key, completionHandler: { result in
                     switch result {
                     case .failure(let error):
                         completionHandler(.failure(error))
                     case .success(let weather):
-                        completionHandler(.success(weather))
+                        completionHandler(.success((weather, locationResultValue)))
                     }
                 })
             }
@@ -107,12 +106,12 @@ extension ApiService: ApiServiceProtocol {
     }
     
     func requestHourlyWeather(at location: CLLocationCoordinate2D, completionHandler: @escaping (Result<[HourlyWeatherDto], Error>) -> Void){
-        requestLocationKey(location: location, completionHandler: { result in
-            switch result {
+        requestLocationKey(location: location, completionHandler: { locationResult in
+            switch locationResult {
             case .failure(let error):
                 completionHandler(.failure(error))
-            case .success(let key):
-                self.requestHourlyWeather(locationKey: key, completionHandler: { result in
+            case .success(let locationResultValue):
+                self.requestHourlyWeather(locationKey: locationResultValue.key, completionHandler: { result in
                     switch result {
                     case .failure(let error):
                         completionHandler(.failure(error))

@@ -13,6 +13,9 @@ class WeatherTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        layer.shadowColor = UIColor(red: 74/255.0, green: 144/255.0, blue: 226/255.0, alpha: 1.0).cgColor
+        layer.shadowRadius = 5
+        layer.shadowOffset = .zero
     }
     @IBOutlet weak var dayLabel: UILabel!
     @IBOutlet weak var temperatureLabel: UILabel!
@@ -34,10 +37,12 @@ class WeatherTableViewCell: UITableViewCell {
                 self.dayLabel.textColor = UIColor(red: 74/255.0, green: 144/255.0, blue: 226/255.0, alpha: 1.0)
                 self.temperatureLabel.textColor = UIColor(red: 74/255.0, green: 144/255.0, blue: 226/255.0, alpha: 1.0)
                 self.weatherImg.tintColor = UIColor(red: 74/255.0, green: 144/255.0, blue: 226/255.0, alpha: 1.0)
+                self.layer.shadowOpacity = 0.25
             } else {
                 self.dayLabel.textColor = UIColor(red: 25/255.0, green: 26/255.0, blue: 25/255.0, alpha: 1.0)
                 self.temperatureLabel.textColor = UIColor(red: 25/255.0, green: 26/255.0, blue: 25/255.0, alpha: 1.0)
                 self.weatherImg.tintColor = UIColor(red: 25/255.0, green: 26/255.0, blue: 25/255.0, alpha: 1.0)
+                self.layer.shadowOpacity = 0
             }
         }
         

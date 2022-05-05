@@ -27,6 +27,11 @@ class ViewController: UIViewController {
     }()
     
     private var for5DaysWeatherDto: For5DaysWeatherDto?
+    private var selectedDayIndex: Int = 0
+    private var selectedDayModel: DailyForecastDto? {
+        for5DaysWeatherDto?.dailyForecasts[selectedDayIndex]
+    }
+    
     private let locationManger = CLLocationManager()
     private var currentLocation: CLLocation?
     
@@ -94,8 +99,9 @@ class ViewController: UIViewController {
             switch response {
             case .failure(let error):
                 print("Get daily weather failure: \(error)")
-            case .success(let weatherFor5Days):
+            case .success((let weatherFor5Days, let locationResponse)):
                 self?.updateWeather(with: weatherFor5Days)
+                self?.header?.updateHeaderLocation(with: locationResponse)
             }
         })
     }
@@ -108,6 +114,12 @@ class ViewController: UIViewController {
         for5DaysWeatherDto = models
         DispatchQueue.main.async {
             self.table.reloadData()
+        }
+    }
+    
+    private func updateHeaderDayWeather() {
+        if let selectedDayModel = selectedDayModel {
+            header?.updateHeaderData(with: selectedDayModel)
         }
     }
     
@@ -153,12 +165,8 @@ extension ViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let selectyedModel = for5DaysWeatherDto?.dailyForecasts[indexPath.row] else {
-            tableView.deselectRow(at: indexPath, animated: true)
-            return
-        }
-        
-        print("TODO: implement loading hourly weather for: \(selectyedModel.date)")
+        selectedDayIndex = indexPath.row
+        updateHeaderDayWeather()
     }
 }
 

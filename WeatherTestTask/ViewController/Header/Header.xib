@@ -31,11 +31,11 @@
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ЧТ, 19 июля" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bg3-he-4DH">
-                            <rect key="frame" x="37" y="45" width="93" height="21"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ЧТ, 19 июля" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bg3-he-4DH">
+                            <rect key="frame" x="37" y="45" width="123" height="21"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="wjP-iH-Xsb"/>
-                                <constraint firstAttribute="width" constant="93" id="x7C-Wn-jb1"/>
+                                <constraint firstAttribute="width" constant="123" id="x7C-Wn-jb1"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -147,8 +147,8 @@
                                         <constraint firstAttribute="width" constant="30" id="e85-Mb-Kzk"/>
                                     </constraints>
                                 </imageView>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="27˚/19˚" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XDH-TV-E8J">
-                                    <rect key="frame" x="41" y="10" width="68" height="24"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="27˚/19˚" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XDH-TV-E8J">
+                                    <rect key="frame" x="41" y="10" width="101" height="24"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="24" id="n3Z-kO-apn"/>
                                     </constraints>
@@ -204,7 +204,7 @@
                                 <constraint firstAttribute="trailing" secondItem="jce-Fq-0kJ" secondAttribute="trailing" constant="36" id="dN4-t6-EqS"/>
                                 <constraint firstAttribute="trailing" secondItem="fiz-Sg-xsy" secondAttribute="trailing" constant="8" id="duW-0Y-CJx"/>
                                 <constraint firstAttribute="bottom" secondItem="jce-Fq-0kJ" secondAttribute="bottom" constant="12" id="l0c-dZ-RfX"/>
-                                <constraint firstAttribute="trailing" secondItem="XDH-TV-E8J" secondAttribute="trailing" constant="48" id="ljK-Ku-bux"/>
+                                <constraint firstAttribute="trailing" secondItem="XDH-TV-E8J" secondAttribute="trailing" constant="15" id="ljK-Ku-bux"/>
                                 <constraint firstAttribute="bottom" secondItem="fiz-Sg-xsy" secondAttribute="bottom" constant="8" id="m3K-hl-WRe"/>
                                 <constraint firstItem="fiz-Sg-xsy" firstAttribute="leading" secondItem="hb4-pZ-Vhs" secondAttribute="trailing" constant="93" id="mtH-mW-rsd"/>
                                 <constraint firstItem="f1s-yO-Qgg" firstAttribute="centerY" secondItem="bdp-MY-jVr" secondAttribute="centerY" id="oAA-Wo-Y7H"/>
@@ -260,6 +260,7 @@
                 <outlet property="locationLable" destination="Ahb-0N-Wbs" id="lek-qs-tYX"/>
                 <outlet property="speedOfWind" destination="jce-Fq-0kJ" id="II6-cz-WQI"/>
                 <outlet property="temperatureLable" destination="XDH-TV-E8J" id="ct6-rc-LIt"/>
+                <outlet property="weatherPicture" destination="Nee-NF-m88" id="zy6-Yh-TPe"/>
                 <outlet property="windOrientation" destination="fiz-Sg-xsy" id="4yF-kl-zNU"/>
             </connections>
             <point key="canvasLocation" x="-368.84057971014494" y="-105.46875"/>
